@@ -1,3 +1,12 @@
 .space-evenly{
     justify-content: space-evenly
 }
+.homecenter {
+    margin-top: 20px !important;
+}
+.home-title{
+    color: white;
+    margin-top: 50px;
+    text-align: center;
+}
+

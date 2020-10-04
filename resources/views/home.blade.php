@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
 
-        <div class="row justify-content-center">
+        <div class="row justify-content-between">
             <div class="col-md-3 text-center">
                 <div class="card">
                     <div class="card-header">{{ __('New tracks') }}</div>
@@ -36,4 +36,5 @@
                 </div>
             </div>
         </div>
+
 @endsection

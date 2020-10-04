@@ -60,4 +60,7 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(60);
         });
     }
+
+    public const PROFILE = '/profile';
+
 }

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'ArtistHUB') }}</title>
+    <title>{{ config('ArtistHUB', 'ArtistHUB') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -36,8 +36,11 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav mr-auto">
-
+                <ul class="navbar-nav ml-auto">
+                    <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -56,10 +59,18 @@
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                                {{ Auth::user()->username }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('home') }}">
+                                <button type="button" onclick="window.location='{{ url("home") }}'"></button>
+                                {{ __('Home') }}
+                                </a>
+                               <a class="dropdown-item" href="{{'home' }}">
+                                <button type="button" onclick="window.location='{{ url("profile") }}'"></button>
+                                   {{ __('Profile') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -80,8 +91,31 @@
     <main class="homecenter">
         @yield('content')
     </main>
+
+    <div class="fixed-bottom">
+        <div class="audio-container d-flex justify-content-center">
+            <div class="column add-bottom">
+                <div id="mainwrap">
+                    <div id="nowPlay">
+                        <span id="npAction">Paused...</span><span id="npTitle"></span>
+                    </div>
+                        <div id="audio0">
+                            <audio id="audio1" preload controls>Your browser does not support HTML5 Audio! 😢</audio>
+                    </div>
+                    <div id="plwrap">
+                        <ul id="plList"></ul>
+                        <div id="tracks">
+                            <a id="btnPrev">&vltri;</a><a id="btnNext">&vrtri;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 </body>
+<a href = "{{asset('public\js\player.js')}}" />
 </html>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -92,3 +126,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+
