@@ -72,6 +72,10 @@
                                     <button type="button" onclick="window.location='{{ url("profile") }}'"></button>
                                     {{ __('Profile') }}
                                 </a>
+                                <a class="dropdown-item" href="{{ route('settings') }}">
+                                    <button type="button" onclick="window.location='{{ url("settings") }}'"></button>
+                                    {{ __('Settings') }}
+                                </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

@@ -21,6 +21,7 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
+
 Auth::routes();
 
 Route::get('/profile/{userId}', [App\Http\Controllers\ProfileController::class, 'profile'])->name('id.show');
@@ -30,6 +31,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/post/create', [App\Http\Controllers\PostsController::class, 'create'])->name('posts');
 
 Route::get('/profile/{username}', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile.show');
+
+Route::get('/settings', [App\Http\Controllers\ProfileController::class, 'settings'])->name('settings');
 
 //Search
 

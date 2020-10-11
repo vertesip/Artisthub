@@ -32,6 +32,12 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function settings()
+    {
+        return view('settings', [
+        ]);
+    }
+
     public function search(Request $request)
     {
      // $request->get('search');
