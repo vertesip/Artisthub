@@ -37,9 +37,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <form action="/search" method="POST" role="search" class="form-inline my-2 my-lg-0">
+                        <div class="input-group">
+                            {{ csrf_field() }}
+                            <input type="text" class="form-control" name="q"
+                                   placeholder="Search users"> <span class="input-group-btn">
+                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{User::search($searchText)->get()}}</button>
+                    </span>
+                        </div>
+
                     </form>
                 </ul>
 
@@ -64,11 +70,11 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('home') }}">
-                                <button type="button" onclick="window.location='{{ url("home") }}'"></button>
-                                {{ __('Home') }}
+                                    <button type="button" onclick="window.location='{{ url("home") }}'"></button>
+                                    {{ __('Home') }}
                                 </a>
-                               <a class="dropdown-item" href="{{'profile/(Auth::user()->id)' }}">
-                                <button type="button" onclick="window.location='{{ url("profile") }}'"></button>
+                                <a class="dropdown-item" href="{{ route('id.show', ['userId' => Auth::id()]) }}">
+                                    <button type="button" onclick="window.location='{{ url("profile") }}'"></button>
                                     {{ __('Profile') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -99,8 +105,8 @@
                     <div id="nowPlay">
                         <span id="npAction">Paused...</span><span id="npTitle"></span>
                     </div>
-                        <div id="audio0">
-                            <audio id="audio1" preload controls>Your browser does not support HTML5 Audio! 😢</audio>
+                    <div id="audio0">
+                        <audio id="audio1" preload controls>Your browser does not support HTML5 Audio! 😢</audio>
                     </div>
                     <div id="plwrap">
                         <ul id="plList"></ul>
@@ -115,7 +121,7 @@
     </div>
 </div>
 </body>
-<a href = "{{asset('public\js\player.js')}}" />
+<a href="{{asset('public\js\player.js')}}"/>
 </html>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

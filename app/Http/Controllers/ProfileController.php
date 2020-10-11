@@ -24,10 +24,11 @@ class ProfileController extends Controller
      */
     public function profile($user)
     {
-        $user = User::find($user);
+        $user = User::findOrFail($user);
 
         return view('profile', [
             'user' => $user,
         ]);
     }
+
 }
