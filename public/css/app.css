@@ -184,6 +184,13 @@ a.plyr__controls__item.plyr__control:hover,
 .plyr--audio .plyr__progress--buffer {
     color:rgba(0,0,0,.1);
 }
+.vertical-center{
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+    margin-top: -150px;
+    display: flex;
+    align-items: center;
+}
 
 
 /* Media Queries
