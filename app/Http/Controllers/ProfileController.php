@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use app\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 
 class ProfileController extends Controller
 {
@@ -31,4 +32,13 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function search(Request $request)
+    {
+     // $request->get('search');
+
+        $artist = User::whereHas('profile', function (Builder $query) use ($request) {
+            $query->where('artistname', $request);
+        })->firstOrFail();
+
+    }
 }

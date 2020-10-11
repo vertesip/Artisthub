@@ -16,6 +16,7 @@
         "laravel/scout": "^8.3",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
+        "laravelcollective/html": "^6.2",
         "symfony/config": "^5.1",
         "symfony/routing": "5.1",
         "symfony/translation": "^5.1"

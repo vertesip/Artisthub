@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -37,16 +38,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <form action="/search" method="POST" role="search" class="form-inline my-2 my-lg-0">
-                        <div class="input-group">
-                            {{ csrf_field() }}
-                            <input type="text" class="form-control" name="q"
-                                   placeholder="Search users"> <span class="input-group-btn">
-                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">{{User::search($searchText)->get()}}</button>
-                    </span>
-                        </div>
-
-                    </form>
+                    {!! Form::open(array('method' => 'Get', 'route' => array('search', $user ?? ''))) !!}
+                    {!! Form::text('search') !!}
+                    <button>Search</button>
+                    {!! Form::close() !!}
                 </ul>
 
                 <!-- Right Side Of Navbar -->

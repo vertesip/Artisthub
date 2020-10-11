@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Models\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +30,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/post/create', [App\Http\Controllers\PostsController::class, 'create'])->name('posts');
 
 Route::get('/profile/{username}', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile.show');
+
+//Search
+
+Route::get('/search' , [App\Http\Controllers\ProfileController::class, 'search'])->name('search');
