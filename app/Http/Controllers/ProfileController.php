@@ -32,12 +32,15 @@ class ProfileController extends Controller
         ]);
     }
 
+    //Settings fül
     public function settings()
     {
         return view('settings', [
         ]);
     }
 
+
+    //Keresés
     public function search(Request $request)
     {
      // $request->get('search');
