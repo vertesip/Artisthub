@@ -9,6 +9,9 @@ class Post extends Model
 {
 
     protected $guarded = [];
+    /**
+     * @var mixed
+     */
 
     public function user()
     {

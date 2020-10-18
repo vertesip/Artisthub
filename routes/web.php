@@ -29,7 +29,7 @@ Route::get('/profile/{userId}', [App\Http\Controllers\ProfileController::class, 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/post/create', [App\Http\Controllers\PostsController::class, 'create'])->name('posts');
-Route::post('/post', [App\Http\Controllers\PostsController::class, 'store'])->name('posts');
+Route::post('/post', [App\Http\Controllers\PostsController::class, 'store'])->name('post');
 
 Route::get('/profile/{username}', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile.show');
 
