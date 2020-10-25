@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
 
 use App\Models\Post;
 
@@ -23,9 +24,17 @@ class PostsController extends Controller
         $post = new \App\Models\Post();
         $post->user_id = Auth::id();
         $post->text = $request->input('caption');
-        $post->image = $request->file('image');
-        $post->save();
-        return back()->withSuccess('Post added!');
-    }
+        $post->image = $request->file('image')->store('pictures', 'public');
 
+        $image = Image::make(public_path("storage/{$post->image}"))->fit(1200, 1200);
+
+        $image->save();
+        $post->save();
+
+        return redirect('/profile/'. auth()->user()->id);
+    }
+    public function show(\App\Models\Post $post)
+    {
+        return view('show', compact('post'));
+    }
 }

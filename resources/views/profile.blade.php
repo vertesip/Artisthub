@@ -9,10 +9,11 @@
             <div class="col-9 pt-5">
                 <div class="d-flex justify-content-between align-items-baseline">
                     <h1>{{ $user->username }}</h1>
-                    <a href="#">Add new post</a>
+                    <a href="/post/create">Add new post</a>
                 </div>
                 <div class="d-flex">
-                    <div class="pr-5"><strong>153</strong> posts</div>
+                    <div class="pr-5"><strong>{{$user->posts->count()}}</strong> posts</div>
+                    <div class="pr-5"><strong>0</strong> tracks</div>
                     <div class="pr-5"><strong>23k</strong> followers</div>
                     <div class="pr-W5"><strong>153</strong> following</div>
                 </div>
@@ -24,8 +25,20 @@
                 • 𝐁𝐚𝐬𝐬 𝐌𝐚𝐟𝐢𝐚: www.facebook.com/bassmafiabudapest/<br>
                 • 𝐍𝐊𝐓𝐁: www.facebook.com/newkidsonthebass/<br>
             </div>
-        </div>
 
+            <div class="row pt-5">
+                @foreach($user->posts as $post)
+                    <div class="col-4 pb-4">
+                        <a href="/post/{{$post->id}}">
+                            <img src="/storage/{{ $post->image }}" class="w-100">
+                            <p class="center">{{ $post->text }}</p>
+                        </a>
+                    </div>
+                @endforeach
+
+            </div>
+
+        </div>
 
     </div>
 

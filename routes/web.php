@@ -30,6 +30,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/post/create', [App\Http\Controllers\PostsController::class, 'create'])->name('posts');
 Route::post('/post', [App\Http\Controllers\PostsController::class, 'store'])->name('post');
+Route::get('/post/{post}', [App\Http\Controllers\PostsController::class, 'show'])->name('post.show');
+
 
 Route::get('/profile/{username}', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile.show');
 
