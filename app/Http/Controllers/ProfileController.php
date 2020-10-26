@@ -32,22 +32,28 @@ class ProfileController extends Controller
         ]);
     }
 
-    //Settings fül
-    public function settings()
+    public function edit($user)
     {
-        return view('settings', [
+        $user = User::findOrFail($user);
+
+        return view('edit', [
+            'user' => $user,
         ]);
     }
-
 
     //Keresés
     public function search(Request $request)
     {
-     // $request->get('search');
+        $getQuery = $request->getQueryString();
+        $sub = substr($getQuery,7);
 
-        $artist = User::whereHas('profile', function (Builder $query) use ($request) {
-            $query->where('artistname', $request);
-        })->firstOrFail();
+     // $user = User::findOrFail($sub);
+
+        $user = User::where('username', $sub)->firstOrFail();
+
+        return view('profile', [
+            'user' => $user,
+        ]);
 
     }
 }

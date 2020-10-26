@@ -72,9 +72,9 @@
                                     <button type="button" onclick="window.location='{{ url("profile") }}'"></button>
                                     {{ __('Profile') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('settings') }}">
-                                    <button type="button" onclick="window.location='{{ url("settings") }}'"></button>
-                                    {{ __('Settings') }}
+                                <a class="dropdown-item" href="/profile/{{Auth::id()}}/edit">
+                                    <button type="button" onclick="window.location='{{ url("Edit profile") }}'"></button>
+                                    {{ __('Edit profile') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();

@@ -18,12 +18,10 @@
                     <div class="pr-W5"><strong>153</strong> following</div>
                 </div>
                 <p></p>
-                <a href="www.doolemusic.com" target="_blank"> doolemusic.com</a><br>
-                <br>
-                𝐑𝐞𝐬𝐢𝐝𝐞𝐧𝐭 𝐃𝐉 𝐚𝐭<br>
+                <p>{{ $user->profile->title ?? '' }}</p>
+                <p>{{ $user->profile->description ?? '' }}</p>
+                <a href="{{ $user->profile->url ?? '' }}" target="_blank">{{ $user->profile->url ?? '' }}</a><br>
 
-                • 𝐁𝐚𝐬𝐬 𝐌𝐚𝐟𝐢𝐚: www.facebook.com/bassmafiabudapest/<br>
-                • 𝐍𝐊𝐓𝐁: www.facebook.com/newkidsonthebass/<br>
             </div>
 
             <div class="row pt-5">

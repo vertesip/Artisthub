@@ -34,9 +34,8 @@ Route::get('/post/{post}', [App\Http\Controllers\PostsController::class, 'show']
 
 
 Route::get('/profile/{username}', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile.show');
-
-Route::get('/settings', [App\Http\Controllers\ProfileController::class, 'settings'])->name('settings');
-
+Route::get('/profile/{username}/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('/profile/{username}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 //Search
 
 Route::get('/search' , [App\Http\Controllers\ProfileController::class, 'search'])->name('search');
