@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use app\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
@@ -32,6 +33,7 @@ class ProfileController extends Controller
         ]);
     }
 
+    //Profil módosítása
     public function edit($user)
     {
         $user = User::findOrFail($user);
@@ -41,19 +43,48 @@ class ProfileController extends Controller
         ]);
     }
 
-    //Keresés
-    public function search(Request $request)
+    public function update($user)
     {
-        $getQuery = $request->getQueryString();
-        $sub = substr($getQuery,7);
+        $data = request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'url' => 'url',
+            'profileimage' => '',
+        ]);
 
-     // $user = User::findOrFail($sub);
+        if (request('image',)) {
+            $imagePath = request('image')->store('pictures', 'public');
 
-        $user = User::where('username', $sub)->firstOrFail();
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(200, 200);
+            $image->save();
+
+
+            auth()->user()->profile()->update(array_merge(
+                $data,
+                ['profileimage' => $imagePath],
+            ));
+        } else {
+            auth()->user()->profile()->update($data);
+        }
+
+
+        $user = User::findOrFail($user);
 
         return view('profile', [
             'user' => $user,
         ]);
 
+    }
+
+    //Keresés
+    public function search(Request $request)
+    {
+        $getQuery = $request->getQueryString();
+        $sub = substr($getQuery, 7);
+        $user = User::where('username', $sub)->firstOrFail();
+
+        return view('profile', [
+            'user' => $user,
+        ]);
     }
 }

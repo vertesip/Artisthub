@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <form action="/profile{{$user->id}}" enctype="multipart/form-data" method="post">
+        <form action="/profile/{{$user->id}}" enctype="multipart/form-data" method="post">
             @csrf
             @method('PATCH')
             <div class="row">
@@ -16,7 +16,7 @@
                         <input id="title" type="text"
                                class="form-control @error('title') is-invalid @enderror"
                                name="title"
-                               value="{{ $user->profile->title ?? 'title' }}"
+                               value="{{ $user->profile->title ?? '' }}"
                                required autocomplete="title" autofocus>
 
                         @error('title')
@@ -32,7 +32,7 @@
                         <input id="description" type="text"
                                class="form-control @error('description') is-invalid @enderror"
                                name="description"
-                               value="{{ $user->profile->description ?? 'description'}}"
+                               value="{{ $user->profile->description ?? ''}}"
                                required autocomplete="description" autofocus>
 
                         @error('description')
@@ -48,7 +48,7 @@
                         <input id="url" type="text"
                                class="form-control @error('url') is-invalid @enderror"
                                name="url"
-                               value="{{ $user->profile->url ?? 'url' }}"
+                               value="{{ $user->profile->url ?? '' }}"
                                required autocomplete="url" autofocus>
 
                         @error('url')
