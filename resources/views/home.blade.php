@@ -6,7 +6,7 @@
         <div class="row justify-content-between">
             <div class="col-md-3 text-center">
                 <div class="card">
-                    <div class="card-header">{{ __('New tracks') }}</div>
+                    <div class="card-header bg-dark text-light">{{ __('New tracks') }}</div>
 
                     <div class="card-body">
                         <p>tracks</p>
@@ -17,7 +17,7 @@
             </div>
             <div class="col-md-4 text-center">
                 <div class="card">
-                    <div class="card-header">{{ __('Post') }}</div>
+                    <div class="card-header bg-dark text-light">{{ __('Post') }}</div>
 
                     <div class="card-body">
                         {{ __('Content') }}
@@ -26,7 +26,7 @@
             </div>
             <div class="col-md-3 text-center">
                 <div class="card">
-                    <div class="card-header">{{ __('Friends online') }}</div>
+                    <div class="card-header bg-dark text-light">{{ __('Friends online') }}</div>
 
                     <div class="card-body">
                         <p>Friend 1</p>

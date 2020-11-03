@@ -22,7 +22,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         body {
-            background: url('img/loginscreenbg.jpg') no-repeat center center fixed;
+            background: url('img/bg.png') no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -33,8 +33,8 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container ">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+        <div class="container">
             <a class="navbar-brand" href="{{ url('/home') }}">
                 {{ config('ArtistHUB', 'ArtistHUB') }}
             </a>
@@ -55,11 +55,11 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('Login') }}</a>
+                            <a class="nav-link text-light" href="{{ url('/') }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link text-light" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @endif
                     @else
@@ -88,8 +88,8 @@
     </nav>
 
     <main class="homecenter">
-        <div class="div">
-            <img src="{{URL::to('public/img/logo_size.png')}}">
+        <div class="div logo">
+            <img src="{{URL::to('/img/logo_size.png')}}">
         </div>
         @yield('content')
     </main>

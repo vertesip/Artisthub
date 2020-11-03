@@ -192,6 +192,11 @@ a.plyr__controls__item.plyr__control:hover,
     align-items: center;
 }
 
+.logo{
+    text-align-last: center;
+}
+
+
 
 /* Media Queries
 ================================================== */

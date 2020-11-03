@@ -24,7 +24,7 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
         <div class="container ">
             <a class="navbar-brand" href="{{ url('/home') }}">
                 {{ config('ArtistHUB', 'ArtistHUB') }}
@@ -38,10 +38,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    {!! Form::open(array('method' => 'Get', 'route' => array('search', $user ?? ''))) !!}
-                    {!! Form::text('search') !!}
-                    <button>Search</button>
-                    {!! Form::close() !!}
+                        {!! Form::open(array('method' => 'Get','class'=>'d-flex','route' => array('search', $user ?? ''))) !!}
+                        {!! Form::text('search') !!}
+                        <button class="btn btn-light btn-sm ml-1">Search</button>
+                        {!! Form::close() !!}
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -58,25 +58,31 @@
                         @endif
                     @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->username }}
+                                <img src="{{Auth::user()->profile->profileImage()}}"
+                                     class="rounded-circle w-100"
+                                     style="max-width: 25px">
+                               {{ Auth::user()->username }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('home') }}">
-                                    <button type="button" onclick="window.location='{{ url("home") }}'"></button>
+
+                            <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-light d-flex align-items-center" href="{{ route('home') }}">
+                                    <button type="button" class="w-50 btn" onclick="window.location='{{ url("home") }}'"><img class="w-75" src="storage\Icons\053-home.png"></button>
                                     {{ __('Home') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('id.show', ['userId' => Auth::id()]) }}">
-                                    <button type="button" onclick="window.location='{{ url("profile") }}'"></button>
+                                <a class="dropdown-item text-light d-flex align-items-center" href="{{ route('id.show', ['userId' => Auth::id()]) }}">
+                                    <button type="button" class="w-50 btn" onclick="window.location='{{ url("profile") }}'"><img class="w-75" src="storage\Icons\097-user.png"></button>
                                     {{ __('Profile') }}
                                 </a>
-                                <a class="dropdown-item" href="/profile/{{Auth::id()}}/edit">
-                                    <button type="button" onclick="window.location='{{ url("Edit profile") }}'"></button>
-                                    {{ __('Edit profile') }}
+                                <a class="dropdown-item text-light d-flex align-items-center" href="/profile/{{Auth::id()}}/edit">
+                                    <button type="button" class="w-50 btn"
+                                            onclick="window.location='{{ url("Edit profile") }}'"><img class="w-75" src="storage\Icons\142-settings.png"></button>
+                                    {{ __('Edit') }}
                                 </a>
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                <a class="dropdown-item text-light d-flex align-items-center" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -98,7 +104,7 @@
     </main>
 
     <div class="fixed-bottom">
-        <div class="audio-container d-flex justify-content-center">
+        <div class="audio-container d-flex justify-content-center bg-dark text-light">
             <div class="column add-bottom">
                 <div id="mainwrap">
                     <div id="nowPlay">
@@ -120,7 +126,7 @@
     </div>
 </div>
 </body>
-<a href="{{asset('public\js\player.js')}}"/>
+<a href="{{asset('public\js\player.js')}}"></a>
 </html>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
