@@ -390,7 +390,7 @@
         }
     </style>
 </head>
-<body>
+<script>
 @extends('layouts.app')
 
 @section('content')
@@ -474,7 +474,6 @@
     </div>
     <h1 class="home-title">Connect with thousands of musicians worldwide!</h1>
 @endsection
-
 
 </body>
 </html>

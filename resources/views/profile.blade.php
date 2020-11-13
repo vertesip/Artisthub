@@ -10,9 +10,13 @@
                 <div class="col-9 pt-5">
                     <div class="d-flex justify-content-between align-items-baseline">
                         <div class="d-flex align-items-center pb-3">
-                        <div class="h4">{{ $user->username }}</div>
+                            <div class="h4">{{ $user->username }}</div>
+                            <div class="follow">
 
-                        <button class="btn btn-primary ml-4">Follow</button>
+
+                                <FollowButton></FollowButton>
+
+                            </div>
                         </div>
                         <a href="/post/create">Add new post</a>
                     </div>
@@ -44,7 +48,6 @@
         </div>
 
     </div>
-
 
 
 @endsection
