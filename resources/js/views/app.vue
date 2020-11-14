@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="testFunc" class="btn btn-primary ml-4">Follow</button>
+        <button v-on:click="testFunc" class="btn btn-secondary ml-4">Follow</button>
     </div>
 </template>
 

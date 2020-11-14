@@ -2,10 +2,37 @@
     justify-content: space-evenly
 }
 .homecenter {
-    margin-top: 20px !important;
+    margin-top: 100px !important;
+}
+.banner{
+    margin-top: -40px !important;
 }
 .home-title{
     color: white;
     margin-top: 50px;
     text-align: center;
 }
+body{
+    background-color: #4F4F4F;
+    overflow-x: hidden;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+

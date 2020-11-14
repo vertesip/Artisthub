@@ -18,13 +18,13 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}" />
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}"/>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm fixed-top">
         <div class="container ">
             <a class="navbar-brand" href="{{ url('/home') }}">
                 {{ config('ArtistHUB', 'ArtistHUB') }}
@@ -34,19 +34,44 @@
                     aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            <div class="d-flex align-items-center">
+                <div>
+                    <a class="text-light d-flex align-items-center"
+                       href="{{ route('home') }}">
+                        {{ __('Upload') }}
+                    </a>
+                </div>
+                <div class="ml-4 mr-4">
+                    <a class="text-light d-flex align-items-center"
+                       href="{{ route('home') }}">
+                    {{ __('Music') }}
+                </div>
+            </div>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
-                        {!! Form::open(array('method' => 'Get','class'=>'d-flex','route' => array('search', $user ?? ''))) !!}
-                        {!! Form::text('search') !!}
-                        <button class="btn btn-light btn-sm ml-1">Search</button>
-                        {!! Form::close() !!}
+                <ul class="navbar-nav ml-auto mr-auto" style="margin-left: 175px !important;">
+                    {!! Form::open(array('method' => 'Get','class'=>'d-flex','route' => array('search', $user ?? ''))) !!}
+                    {!! Form::text('search') !!}
+                    <button class="btn btn-light btn-sm ml-1">Search</button>
+                    {!! Form::close() !!}
                 </ul>
-
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
+
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <a class="text-light d-flex align-items-center"
+                               href="{{ route('home') }}">
+                                {{ __('Home') }}
+                            </a>
+                        </div>
+                        <div class="ml-4 mr-4">
+                            <a class="text-light d-flex align-items-center"
+                               href="/post/create">New post</a>
+                        </div>
+                    </div>
                     @guest
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}">{{ __('Login') }}</a>
@@ -64,25 +89,36 @@
                                 <img src="{{Auth::user()->profile->profileImage()}}"
                                      class="rounded-circle w-100"
                                      style="max-width: 25px">
-                               {{ Auth::user()->username }}
+                                {{ Auth::user()->username }}
                             </a>
 
-
                             <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-light d-flex align-items-center" href="{{ route('home') }}">
-                                    <button type="button" class="w-50 btn" onclick="window.location='{{ url("home") }}'"><img class="w-75" src="storage\Icons\053-home.png"></button>
+                                <a class="dropdown-item text-light d-flex align-items-center"
+                                   href="{{ route('home') }}">
+                                    <button type="button" class="w-50 btn"
+                                            onclick="window.location='{{ url("home") }}'"><img class="w-75"
+                                                                                               src="storage\Icons\053-home.png">
+                                    </button>
                                     {{ __('Home') }}
                                 </a>
-                                <a class="dropdown-item text-light d-flex align-items-center" href="{{ route('id.show', ['userId' => Auth::id()]) }}">
-                                    <button type="button" class="w-50 btn" onclick="window.location='{{ url("profile") }}'"><img class="w-75" src="storage\Icons\097-user.png"></button>
+                                <a class="dropdown-item text-light d-flex align-items-center"
+                                   href="{{ route('id.show', ['userId' => Auth::id()]) }}">
+                                    <button type="button" class="w-50 btn"
+                                            onclick="window.location='{{ url("profile") }}'"><img class="w-75"
+                                                                                                  src="storage\Icons\097-user.png">
+                                    </button>
                                     {{ __('Profile') }}
                                 </a>
-                                <a class="dropdown-item text-light d-flex align-items-center" href="/profile/{{Auth::id()}}/edit">
+                                <a class="dropdown-item text-light d-flex align-items-center"
+                                   href="/profile/{{Auth::id()}}/edit">
                                     <button type="button" class="w-50 btn"
-                                            onclick="window.location='{{ url("Edit profile") }}'"><img class="w-75" src="storage\Icons\142-settings.png"></button>
+                                            onclick="window.location='{{ url("Edit profile") }}'"><img class="w-75"
+                                                                                                       src="storage\Icons\142-settings.png">
+                                    </button>
                                     {{ __('Edit') }}
                                 </a>
-                                <a class="dropdown-item text-light d-flex align-items-center" href="{{ route('logout') }}"
+                                <a class="dropdown-item text-light d-flex align-items-center"
+                                   href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
@@ -105,26 +141,12 @@
 
     <div class="fixed-bottom">
         <div class="audio-container d-flex justify-content-center bg-dark text-light">
-            <div class="column add-bottom">
-                <div id="mainwrap">
-                    <div id="nowPlay">
-                        <span id="npAction">Paused...</span><span id="npTitle"></span>
-                    </div>
-                    <div id="audio0">
-                        <audio id="audio1" preload controls>Your browser does not support HTML5 Audio! 😢</audio>
-                    </div>
-                    <div id="plwrap">
-                        <ul id="plList"></ul>
-                        <div id="tracks">
-                            <a id="btnPrev">&vltri;</a><a id="btnNext">&vrtri;</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div style="height: 50px"></div>
         </div>
-
     </div>
+
 </div>
+
 <script src="{{ mix('js/app.js') }}"></script>
 </body>
 <a href="{{asset('public\js\player.js')}}"></a>
