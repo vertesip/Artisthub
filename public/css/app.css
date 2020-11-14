@@ -3,20 +3,21 @@
 }
 .homecenter {
     margin-top: 100px !important;
+    margin-bottom: 100px;
 }
 .banner{
-    margin-top: -40px !important;
+    margin-top: -60px !important;
 }
 .home-title{
     color: white;
     margin-top: 50px;
     text-align: center;
 }
+
 body{
-    background-color: #4F4F4F;
     overflow-x: hidden;
+    background-color: #4F4F4F;
 }
-/* width */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -35,4 +36,3 @@ body{
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
-
