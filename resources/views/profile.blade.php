@@ -12,10 +12,7 @@
                         <div class="d-flex align-items-center pb-3">
                             <div class="h4">{{ $user->username }}</div>
                             <div class="follow">
-
-
-                                <FollowButton></FollowButton>
-
+                                    <app></app>
                             </div>
                         </div>
                         <a href="/post/create">Add new post</a>

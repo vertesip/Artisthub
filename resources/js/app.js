@@ -1,19 +1,12 @@
 require('./bootstrap');
 
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+window.Vue = require('vue');
 
-Vue.use(VueRouter);
-
-import FollowButton from './components/FollowButton';
-
-Vue.component('follow', require('./components/FollowButton.vue').default);
+//Main pages
+import App from './views/app.vue'
 
 
 const app = new Vue({
-    el: '#follow',
-    components: {
-        FollowButton
-    },
-    router,
+    el: '#app',
+    components: { App }
 });
