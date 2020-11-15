@@ -1915,15 +1915,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['userId'],
   mounted: function mounted() {
     console.log('Component mounted.');
   },
   methods: {
     followUser: function followUser() {
-      console.log('asd');
-    },
-    pls: function pls() {
-      console.error('pls');
+      axios.post('/follow/' + this.userId.userId).then(function (response) {
+        alert(response.data);
+      });
     }
   }
 });
@@ -37525,7 +37525,7 @@ var render = function() {
       "button",
       {
         staticClass: "btn btn-secondary ml-4 test-class",
-        on: { click: _vm.pls }
+        on: { click: _vm.followUser }
       },
       [_vm._v("Follow")]
     )
@@ -49737,13 +49737,16 @@ var FollowButton = __webpack_require__(/*! ./components/FollowButton.vue */ "./r
 
 var app = new Vue({
   el: '#follow-button',
+  data: {
+    userId: window.userId
+  },
   components: {
     FollowButton: FollowButton
   },
-  template: "<div><follow-button></follow-button></div>",
+  template: "<div class='follow-wrapper'><follow-button v-bind:user-id='{userId}'></follow-button></div>",
   created: function created() {
     // `this` points to the vm instance
-    console.log("Created instance");
+    console.log(this);
   }
 }); //app.$mount('#follow-button');
 

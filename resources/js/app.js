@@ -30,13 +30,16 @@ const FollowButton = require('./components/FollowButton.vue').default;
 
 const app = new Vue({
     el: '#follow-button',
+    data: {
+        userId: window.userId
+    },
     components: {
         FollowButton
     },
-    template: "<div><follow-button></follow-button></div>",
+    template: "<div class='follow-wrapper'><follow-button v-bind:user-id='{userId}'></follow-button></div>",
     created: function () {
         // `this` points to the vm instance
-        console.log("Created instance");
+        console.log(this);
     }
 });
 

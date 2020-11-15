@@ -26,6 +26,8 @@ Auth::routes();
 
 Route::get('/profile/{userId}', [App\Http\Controllers\ProfileController::class, 'profile'])->name('id.show');
 
+Route::post('follow/{user}', [App\Http\Controllers\FollowsController::class, 'store'])->name('follow.store');
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/post/create', [App\Http\Controllers\PostsController::class, 'create'])->name('posts');

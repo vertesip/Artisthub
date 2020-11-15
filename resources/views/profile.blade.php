@@ -1,6 +1,10 @@
 @extends('layouts.hometemplate')
 
 @section('content')
+    <!-- Variables -->
+    <script>
+        window.userId = "{{$user->id}}";
+    </script>
     <div class="banner shadow-lg"><img class="position-absolute"
                              src="{{URL::to('/img/Soundcloud-banner-template-dimensions.png')}}">
         <div class="container-fluid">
@@ -12,8 +16,8 @@
                     <div class="d-flex justify-content-between align-items-baseline">
                         <div class="d-flex align-items-center pb-3">
                             <div class="h1 text-light">{{ $user->username }}</div>
-                            <div class="follow" id="follow-button">
-                                {{--<follow-button></follow-button>--}}
+                            <div class="follow" id="follow-button" v-model:user-id="{{ $user->id }}">
+                                <follow-button></follow-button>
                             </div>
                         </div>
                     </div>

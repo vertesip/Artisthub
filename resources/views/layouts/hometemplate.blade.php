@@ -148,7 +148,7 @@
 
 </div>
 
-{{--<script src="{{ mix('js/app.js') }}"></script>--}}
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 <a href="{{asset('public\js\player.js')}}"></a>
 </html>
