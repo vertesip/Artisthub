@@ -12,8 +12,8 @@
                     <div class="d-flex justify-content-between align-items-baseline">
                         <div class="d-flex align-items-center pb-3">
                             <div class="h1 text-light">{{ $user->username }}</div>
-                            <div class="follow">
-                                <app></app>
+                            <div class="follow" id="follow-button">
+                                {{--<follow-button></follow-button>--}}
                             </div>
                         </div>
                     </div>
