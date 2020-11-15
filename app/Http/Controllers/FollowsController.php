@@ -12,6 +12,6 @@ class FollowsController extends Controller
 
         $user = User::findOrFail($user);
 
-        return $user->username;
+        return auth()->user()->following()->toggle($user->profile);
     }
 }
