@@ -6,7 +6,7 @@
         window.userId = "{{$user->id}}";
     </script>
     <div class="banner shadow-lg"><img class="position-absolute"
-                             src="{{URL::to('/img/Soundcloud-banner-template-dimensions.png')}}">
+                             src="/storage/{{$user->profile->bannerimage}}">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-3 p-5">

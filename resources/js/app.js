@@ -36,7 +36,7 @@ const app = new Vue({
     components: {
         FollowButton
     },
-    template: "<div class='follow-wrapper'><follow-button v-bind:user-id='{userId}'></follow-button></div>",
+    template: "<div class='follow-wrapper'><follow-button v-bind:user-id='{userId}' v-bind:follows='{follows}'></follow-button></div>",
     created: function () {
         // `this` points to the vm instance
         console.log(this);

@@ -66,6 +66,15 @@
                     <strong>{{ $message }}</strong>
                     </span>
                     @enderror
+
+                    <div class="row">
+                        <label for="banner" class="col-md-4 col-form-label">Banner picture</label>
+                    </div>
+                    <input type="file" , class="file-control-file" id="banner" name="banner">
+                    @error('banner')
+                    <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
                     <div class="row pt-4">
                         <button class="btn btn-primary">Update profile</button>
                     </div>

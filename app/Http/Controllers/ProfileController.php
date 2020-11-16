@@ -28,8 +28,12 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail($user);
 
+
+        $follows= (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+
         return view('profile', [
             'user' => $user,
+            'follows' =>$follows,
         ]);
     }
 
@@ -50,23 +54,32 @@ class ProfileController extends Controller
             'description' => 'required',
             'url' => 'url',
             'profileimage' => '',
+            'bannerimage' => ''
         ]);
 
-        if (request('image',)) {
+        if (request('image')) {
             $imagePath = request('image')->store('pictures', 'public');
 
             $image = Image::make(public_path("storage/{$imagePath}"))->fit(310, 310);
             $image->save();
 
-
-            auth()->user()->profile()->update(array_merge(
+            $data = array_merge(
                 $data,
                 ['profileimage' => $imagePath],
-            ));
-        } else {
-            auth()->user()->profile()->update($data);
+            );
         }
+        if (request('banner')) {
+            $imagePath = request('banner')->store('banners', 'public');
 
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1900, 400);
+            $image->save();
+
+            $data = array_merge(
+                $data,
+                ['bannerimage' => $imagePath],
+            );
+        }
+        auth()->user()->profile()->update($data);
 
         $user = User::findOrFail($user);
 
