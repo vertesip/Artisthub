@@ -14,12 +14,6 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function allpost()
-    {
-        $users = auth()->user()->following()->pluck('profiles.user_id');
-
-    }
-
     public function create(){
         return view('posts.create');
     }

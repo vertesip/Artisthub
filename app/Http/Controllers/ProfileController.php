@@ -82,9 +82,11 @@ class ProfileController extends Controller
         auth()->user()->profile()->update($data);
 
         $user = User::findOrFail($user);
+        $follows= (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
         return view('profile', [
             'user' => $user,
+            'follows' => $follows,
         ]);
 
     }
