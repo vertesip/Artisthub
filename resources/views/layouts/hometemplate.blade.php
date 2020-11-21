@@ -40,7 +40,7 @@
             <div class="d-flex align-items-center">
                 <div>
                     <a class="text-light d-flex align-items-center"
-                       href="{{ route('home') }}">
+                       href="/music/upload">
                         {{ __('Upload') }}
                     </a>
                 </div>

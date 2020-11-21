@@ -49,7 +49,7 @@
                             <p class="text-light h4" style="margin-top:-20px"><br>posts</p>
                         </div>
                         <div class="text-center justify-content-center mr-4">
-                            <p class="text-light h2"><strong>0</strong></p>
+                            <p class="text-light h2"><strong>{{$user->music->count()}}</strong></p>
                             <p class="text-light h4"style="margin-top:-20px"><br>tracks</p>
                         </div>
                         <div class="text-center justify-content-center mr-4">
@@ -97,11 +97,11 @@
                 </div>
                 </div>
                 <div class="card-body container justify-content-center text-center">
-                    @foreach($user->posts as $post)
+                    @foreach($user->music as $music)
                         <div class="col-12">
                             <div class="d-flex">
                                 <div>
-                                    <iframe width="190%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/655743269&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dooledubstep" title="Doole" target="_blank" style="color: #cccccc; text-decoration: none;">Doole</a> · <a href="https://soundcloud.com/dooledubstep/svdden-death-afk-bzzrk-doole-remix" title="SVDDEN DEATH &amp; AFK - BZZRK (Doole Remix)" target="_blank" style="color: #cccccc; text-decoration: none;">SVDDEN DEATH &amp; AFK - BZZRK (Doole Remix)</a></div>
+                                    <?php echo $music->embedLink;?>
                                 </div>
 
                             </div>

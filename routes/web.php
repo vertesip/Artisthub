@@ -34,6 +34,9 @@ Route::get('/post/create', [App\Http\Controllers\PostsController::class, 'create
 Route::post('/post', [App\Http\Controllers\PostsController::class, 'store'])->name('post');
 Route::get('/post/{post}', [App\Http\Controllers\PostsController::class, 'show'])->name('post.show');
 
+Route::get('/music/upload', [App\Http\Controllers\MusicController::class, 'upload'])->name('upload');
+Route::post('/music', [App\Http\Controllers\MusicController::class, 'store'])->name('storedupload');
+
 Route::get('/profile/{username}', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile.show');
 Route::get('/profile/{username}/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile/{username}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
