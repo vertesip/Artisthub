@@ -4,6 +4,7 @@
     <!-- Variables -->
     <script>
         window.userId = "{{$user->id}}";
+        window.follows = "{{($follows) ? 'true' : 'false'}}";
     </script>
     <div class="banner shadow-lg"><img class="position-absolute"
                              src="/storage/{{$user->profile->bannerimage}}">
@@ -52,11 +53,11 @@
                             <p class="text-light h4"style="margin-top:-20px"><br>tracks</p>
                         </div>
                         <div class="text-center justify-content-center mr-4">
-                            <p class="text-light h2"><strong>23k</strong></p>
+                            <p class="text-light h2"><strong>{{$user->profile->followers->count()}}</strong></p>
                             <p class="text-light h4"style="margin-top:-20px"><br>followers</p>
                         </div>
                         <div class="text-center justify-content-center mr-4">
-                            <p class="text-light h2"><strong>153</strong></p>
+                            <p class="text-light h2"><strong>{{$user->following->count()}}</strong></p>
                             <p class="text-light h4"style="margin-top:-20px"><br>following</p>
                         </div>
                     </div>

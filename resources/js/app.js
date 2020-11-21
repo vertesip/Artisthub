@@ -31,7 +31,8 @@ const FollowButton = require('./components/FollowButton.vue').default;
 const app = new Vue({
     el: '#follow-button',
     data: {
-        userId: window.userId
+        userId: window.userId,
+        follows: window.follows
     },
     components: {
         FollowButton
@@ -39,6 +40,7 @@ const app = new Vue({
     template: "<div class='follow-wrapper'><follow-button v-bind:user-id='{userId}' v-bind:follows='{follows}'></follow-button></div>",
     created: function () {
         // `this` points to the vm instance
+        //console.log(this.follows);
         console.log(this);
     }
 });

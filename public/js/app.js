@@ -1914,25 +1914,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['userId', 'follows'],
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  },
+  mounted: function mounted() {},
   data: function data() {
     return {
-      status: this.follows
+      status: this.follows.follows === 'true' ? true : false
     };
   },
   methods: {
     followUser: function followUser() {
+      var _this = this;
+
       axios.post('/follow/' + this.userId.userId).then(function (response) {
+        _this.status = !_this.status;
         console.log(response.data);
       });
     }
   },
   computed: {
     buttonText: function buttonText() {
+      console.log("status", this.status);
       return this.status ? 'Unfollow' : 'Follow';
     }
   }
@@ -37531,11 +37535,14 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("button", {
-      staticClass: "btn btn-secondary ml-4 test-class",
-      domProps: { textContent: _vm._s(_vm.buttonText) },
-      on: { click: _vm.followUser }
-    })
+    _c(
+      "button",
+      {
+        staticClass: "btn btn-secondary ml-4 test-class",
+        on: { click: _vm.followUser }
+      },
+      [_vm._v("\n        " + _vm._s(_vm.buttonText) + "\n    ")]
+    )
   ])
 }
 var staticRenderFns = []
@@ -49745,7 +49752,8 @@ var FollowButton = __webpack_require__(/*! ./components/FollowButton.vue */ "./r
 var app = new Vue({
   el: '#follow-button',
   data: {
-    userId: window.userId
+    userId: window.userId,
+    follows: window.follows
   },
   components: {
     FollowButton: FollowButton
@@ -49753,6 +49761,7 @@ var app = new Vue({
   template: "<div class='follow-wrapper'><follow-button v-bind:user-id='{userId}' v-bind:follows='{follows}'></follow-button></div>",
   created: function created() {
     // `this` points to the vm instance
+    //console.log(this.follows);
     console.log(this);
   }
 }); //app.$mount('#follow-button');

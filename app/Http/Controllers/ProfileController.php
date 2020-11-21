@@ -95,9 +95,11 @@ class ProfileController extends Controller
         $getQuery = $request->getQueryString();
         $sub = substr($getQuery, 7);
         $user = User::where('username', $sub)->firstOrFail();
+        $follows= (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
         return view('profile', [
             'user' => $user,
+            'follows' =>$follows,
         ]);
     }
 }

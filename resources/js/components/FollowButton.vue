@@ -1,6 +1,8 @@
 <template>
     <div>
-        <button class="btn btn-secondary ml-4 test-class" v-on:click="followUser" v-text="buttonText"></button>
+        <button class="btn btn-secondary ml-4 test-class" v-on:click="followUser">
+            {{buttonText}}
+        </button>
     </div>
 </template>
 
@@ -10,12 +12,11 @@
 
 
         mounted() {
-            console.log('Component mounted.');
         },
 
         data: function () {
             return {
-                status: this.follows,
+                status: (this.follows.follows === 'true') ? true : false,
             }
         },
 
@@ -23,12 +24,15 @@
             followUser: function () {
                 axios.post('/follow/' + this.userId.userId)
                     .then(response => {
+                        this.status = ! this.status;
                         console.log(response.data);
                     });
             }
         },
         computed: {
-            buttonText() {
+            buttonText: function() {
+                console.log("status", this.status);
+
                 return (this.status) ? 'Unfollow' : 'Follow';
             }
         }
