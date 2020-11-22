@@ -19,13 +19,15 @@ class MusicController extends Controller
 
     public function store(Request $request)
     {
+
+
         $music = new \App\Models\Music();
         $music->user_id = Auth::id();
         $music->embedLink = $request->input('sclink');
 
         $music->save();
 
-        return redirect('/profile/'. auth()->user()->id);
+        return redirect('/profile/'. auth()->user()->id)->with('message', 'Music has been added!');
     }
 
 

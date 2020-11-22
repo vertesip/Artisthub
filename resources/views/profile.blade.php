@@ -24,6 +24,11 @@
                     </div>
                 </div>
             </div>
+            @if(session()->has('message'))
+                <div class="alert alert-success text-center">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="d-flex">
                 <div class="container justify-content-center">
                     <div class="container justify-content-center row" style="width: 105%">
@@ -99,12 +104,7 @@
                 <div class="card-body container justify-content-center text-center">
                     @foreach($user->music as $music)
                         <div class="col-12">
-                            <div class="d-flex">
-                                <div>
                                     <?php echo $music->embedLink;?>
-                                </div>
-
-                            </div>
                             <hr>
                         </div>
                     @endforeach

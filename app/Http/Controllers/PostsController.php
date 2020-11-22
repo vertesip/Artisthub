@@ -31,7 +31,7 @@ class PostsController extends Controller
         $image->save();
         $post->save();
 
-        return redirect('/profile/'. auth()->user()->id);
+        return redirect('/profile/'. auth()->user()->id)->with('message', 'Post has been added!');
     }
     public function show(\App\Models\Post $post)
     {

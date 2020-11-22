@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Music;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -27,9 +30,13 @@ class HomeController extends Controller
 
         $users = auth()->user()->following()->pluck('profiles.user_id');
         $posts = Post::whereIn('user_id',$users)->latest()->get();
+        $musics = Music::whereIn('user_id',$users)->latest()->get();
+        $all_user = User::all();
 
         return view('home', [
             'posts' => $posts,
+            'musics' => $musics,
+            'all_user' => $all_user,
         ]);
     }
 }

@@ -9,6 +9,7 @@ use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -87,7 +88,7 @@ class ProfileController extends Controller
         return view('profile', [
             'user' => $user,
             'follows' => $follows,
-        ]);
+        ])->with('message', 'Profile has been updated!');
 
     }
 
@@ -104,4 +105,5 @@ class ProfileController extends Controller
             'follows' =>$follows,
         ]);
     }
+
 }
