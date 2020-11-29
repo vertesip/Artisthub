@@ -1,7 +1,7 @@
 @extends('layouts.hometemplate')
 
 @section('content')
-    <div class="container">
+    <div class="container card p-3">
         <div class="row">
             <div class="col-8">
                 <img src="/storage/{{ $post->image }}" class="w-100">
@@ -18,7 +18,6 @@
                                     <span class="text-dark">
                                         {{$post->user->username}}</span>
                                 </a>
-                                <a href="#" class="pl-3">Follow</a>
                             </div>
                         </div>
                     </div>

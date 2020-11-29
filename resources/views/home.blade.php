@@ -54,11 +54,15 @@
 
                         <div class="card-body">
                             @foreach($posts as $post)
-                                <div class="container">
+
+                                <div class="container pb-3">
                                     <div class="row">
                                         <div class="col-8">
-                                            <img src="/storage/{{ $post->image }}" class="w-100">
+                                            <a href="/post/{{$post->id}}">
+                                                <img src="/storage/{{ $post->image }}" class="w-100">
+                                            </a>
                                         </div>
+
                                         <div class="col-4">
                                             <div class="d-flex align-items-center">
                                                 <div class="pr-3">
@@ -68,11 +72,13 @@
                                                 </div>
                                                 <div>
                                                     <div class="font-weight-bold">
-                                                        <a href="/profile/{{$post->user->id}}">
+
                                     <span class="text-dark">
-                                        {{$post->user->username}}</span>
-                                                        </a>
-                                                        <a href="#" class="pl-3">Follow</a>
+                                                    <a href="/profile/{{$post->user->id}}">
+                                        {{$post->user->username}}
+                                                    </a></span>
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -80,39 +86,38 @@
                                             <p>
                     <span class="font-weight-bold">
                         <a href="/profile/{{$post->user->id}}">
-                            <span class="text-dark">{{$post->user->username}}</span>
                         </a></span>{{ $post->text }}</p>
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
+                            @endforeach
+
                         </div>
-                        @endforeach
 
+                    </div>
+                </div>
+                <div class="col-md-3 text-center">
+                    <div class="card">
+                        <div class="card-header bg-dark text-light">{{ __('Online Users') }}</div>
 
-
-
-                    <div class="col-md-3 text-center">
-                        <div class="card">
-                            <div class="card-header bg-dark text-light">{{ __('Online Users') }}</div>
-
-                            <div class="card-body">
-                                @foreach($all_user as $user)
-                                    @if($user->isOnline())
-                                        <li class="text-success pb-2">
-                                            <a href="{{ route('id.show', ['userId' => $user->id]) }}">
-                                            <img src="{{$user->profile->profileImage()}}"  class="rounded-circle w-100"
+                        <div class="card-body">
+                            @foreach($all_user as $user)
+                                @if($user->isOnline())
+                                    <li class="text-success pb-2">
+                                        <a class="text-success"
+                                           href="{{ route('id.show', ['userId' => $user->id]) }}">
+                                            <img src="{{$user->profile->profileImage()}}"
+                                                 class="rounded-circle w-100"
                                                  style="max-width: 30px">
                                             {{$user->username}}
-                                            </a>
-                                        </li>
-                                    @else
-                                    @endif
-                                @endforeach
-                            </div>
+                                        </a>
+                                    </li>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
-            </div>
             </div>
         </div>
     </div>

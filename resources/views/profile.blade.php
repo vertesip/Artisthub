@@ -16,7 +16,7 @@
                 <div class="col-9 pt-5">
                     <div class="d-flex justify-content-between align-items-baseline">
                         <div class="d-flex align-items-center pb-3">
-                            <div class="h1 text-light">{{ $user->username }}</div>
+                            <div class="h1 text-light bg-dark p-1">{{ $user->username }}</div>
                             <div class="follow" id="follow-button" v-model:user-id="{{ $user->id }}">
                                 <follow-button></follow-button>
                             </div>
@@ -77,27 +77,42 @@
                 <div class="bg-light container card">
                 <div class="card-body container justify-content-center row pt-5 m-auto text-center">
                     @foreach($user->posts as $post)
-                        <div class="col-7 pb-4">
-
-                            <div class="d-flex align-items-center">
-                                <div class="pr-3">
-                                    <img src="{{$post->user->profile->profileImage()}}" class="rounded-circle w-100"
-                                         style="max-width: 50px">
-                                </div>
-                                <div class="font-weight-bold">
-                                    <a href="/profile/{{$post->user->id}}">
-                                    <span class="text-dark">
-                                        {{$post->user->username}}</span>
+                        <div class="container pb-3">
+                            <div class="row">
+                                <div class="col-8">
+                                    <a href="/post/{{$post->id}}">
+                                        <img src="/storage/{{ $post->image }}" class="w-100">
                                     </a>
-                                    <a href="#" class="pl-3">Follow</a>
+                                </div>
+
+                                <div class="col-4">
+                                    <div class="d-flex align-items-center">
+                                        <div class="pr-3">
+                                            <img src="{{$post->user->profile->profileImage()}}"
+                                                 class="rounded-circle w-100"
+                                                 style="max-width: 50px">
+                                        </div>
+                                        <div>
+                                            <div class="font-weight-bold">
+
+                                    <span class="text-dark">
+                                                    <a href="/profile/{{$post->user->id}}">
+                                        {{$post->user->username}}
+                                                    </a></span>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <p>
+                    <span class="font-weight-bold">
+                        <a href="/profile/{{$post->user->id}}">
+                        </a></span>{{ $post->text }}</p>
                                 </div>
                             </div>
-                            <hr>
-                            <a href="/post/{{$post->id}}">
-                                <p class="center text-dark">{{ $post->text }}</p>
-                                <img src="/storage/{{ $post->image }}" class="w-100">
-                            </a>
                         </div>
+                        <hr>
                     @endforeach
                 </div>
                 </div>

@@ -88,7 +88,8 @@
     </nav>
 
     <main class="homecenter">
-        <div class="div logo">
+        <div class="div logo" style="display: flex;
+    place-content: center;">
             <img src="{{URL::to('/img/logo_size.png')}}">
         </div>
         @yield('content')
