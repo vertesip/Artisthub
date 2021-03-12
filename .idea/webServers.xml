@@ -2,7 +2,21 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="752d676f-6df3-4c14-bd3a-bc6672193929" name="horvath" url="http://effixpro.hu">
+      <webServer id="752d676f-6df3-4c14-bd3a-bc6672193929" name="sajat" url="http://vertesipatrik.com">
+        <fileTransfer host="vertesipatrik.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="8d665746-8657-4bbc-8acd-fd8b9661a31a" name="dorina" url="http://ddorinaphoto.hu">
+        <fileTransfer host="ddorinaphoto.hu" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="a8b497f7-e135-454c-b7eb-b09cc1ea7fe8" name="effix" url="http://effixpro.hu">
         <fileTransfer host="effixpro.hu" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
