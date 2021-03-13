@@ -3,6 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Music;
+use App\Models\Post;
+use App\Models\Profile;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
@@ -52,7 +56,17 @@ class LoginController extends Controller
 
         $this->_registerOrLoginUser($user);
 
-        return redirect()->route('home');
+
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+        $posts = Post::whereIn('user_id',$users)->latest()->get();
+        $musics = Music::whereIn('user_id',$users)->latest()->get();
+        $all_user = User::all();
+
+        return view('home', [
+            'posts' => $posts,
+            'musics' => $musics,
+            'all_user' => $all_user,
+        ]);
     }
 
     //Facebook login
@@ -67,19 +81,30 @@ class LoginController extends Controller
 
         $this->_registerOrLoginUser($user);
 
-        return redirect()->route('home');
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+        $posts = Post::whereIn('user_id',$users)->latest()->get();
+        $musics = Music::whereIn('user_id',$users)->latest()->get();
+        $all_user = User::all();
+
+        return view('home', [
+            'posts' => $posts,
+            'musics' => $musics,
+            'all_user' => $all_user,
+        ]);
+
     }
 
-    protected function _registerOrLoginUser($data)
+    public function _registerOrLoginUser($data)
     {
         $user = User::where('email', '=',$data->email)->first();
         if(!$user){
+
             $user = new User();
-            $user->artistname = $data->artistname;
+            $user->name = $data->name;
             $user->email = $data->email;
             $user->provider_id = $data->id;
-            $user->avatar = $data->avatar;
             $user->save();
+
         }
         Auth::login($user);
     }

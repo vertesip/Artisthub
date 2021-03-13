@@ -75,7 +75,7 @@
 
                                     <span class="text-dark">
                                                     <a href="/profile/{{$post->user->id}}">
-                                        {{$post->user->username}}
+                                        {{$post->user->name}}
                                                     </a></span>
 
 
@@ -110,7 +110,7 @@
                                             <img src="{{$user->profile->profileImage()}}"
                                                  class="rounded-circle w-100"
                                                  style="max-width: 30px">
-                                            {{$user->username}}
+                                            {{$user->name}}
                                         </a>
                                     </li>
                                 @endif

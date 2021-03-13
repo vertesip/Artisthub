@@ -16,7 +16,7 @@
                 <div class="col-9 pt-5">
                     <div class="d-flex justify-content-between align-items-baseline">
                         <div class="d-flex align-items-center pb-3">
-                            <div class="h1 text-light bg-dark p-1">{{ $user->username }}</div>
+                            <div class="h1 text-light bg-dark p-1">{{ $user->name }}</div>
                             <div class="follow" id="follow-button" v-model:user-id="{{ $user->id }}">
                                 <follow-button></follow-button>
                             </div>

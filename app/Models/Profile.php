@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Profile extends Model
 {
     protected $guarded = [];
+    /**
+     * @var mixed
+     */
 
     public function profileImage()
     {

@@ -96,7 +96,7 @@
                                 <img src="{{Auth::user()->profile->profileImage()}}"
                                      class="rounded-circle w-100"
                                      style="max-width: 25px">
-                                {{ Auth::user()->username }}
+                                {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">

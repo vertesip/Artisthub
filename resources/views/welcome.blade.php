@@ -390,7 +390,7 @@
         }
     </style>
 </head>
-<script>
+
 @extends('layouts.app')
 
 @section('content')
@@ -403,45 +403,48 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-                       <div class="form-group row">
-                           <div class="col-md-6 offset-md-3">
-                              <div class="form-check">
-                                   <a href="{{ route('login.google') }}" class="btn btn-danger btn-block">Login with Google</a>
-                                    <a href="{{ route('login.facebook') }}" class="btn btn-primary btn-block">Login with Facebook</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <p style="text-align: center">OR</p>
-
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-3">
-                                     <div class="form-check">
-                                    <input id="email" type="email"
-                                           class="form-control @error('email') is-invalid @enderror" name="email"
-                                           value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                     </div>
+                                    <div class="form-check">
+                                        <a href="{{ route('login.google') }}" class="btn btn-danger btn-block">Login
+                                            with Google</a>
+                                        <a href="{{ route('login.facebook') }}" class="btn btn-primary btn-block">Login
+                                            with Facebook</a>
+                                    </div>
                                 </div>
                             </div>
 
+                            <p style="text-align: center">OR</p>
+
                             <div class="form-group row">
                                 <div class="col-md-6 offset-md-3">
-                                      <div class="form-check">
-                                    <input id="password" type="password"
-                                           class="form-control @error('password') is-invalid @enderror" name="password"
-                                           required autocomplete="current-password">
+                                    <div class="form-check">
+                                        <input id="email" type="email"
+                                               class="form-control @error('email') is-invalid @enderror" name="email"
+                                               value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                                    @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                                        @error('email')
+                                        <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                    @enderror
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-6 offset-md-3">
+                                    <div class="form-check">
+                                        <input id="password" type="password"
+                                               class="form-control @error('password') is-invalid @enderror"
+                                               name="password"
+                                               required autocomplete="current-password">
+
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
@@ -470,8 +473,8 @@
                                             {{ __('Forgot Your Password?') }}
                                         </a>
                                     @endif
+                                </div>
                             </div>
-                          </div>
                         </form>
 
                     </div>
@@ -480,9 +483,9 @@
         </div>
     </div>
     <h1 class="home-title">Connect with thousands of musicians worldwide!</h1>
-@endsection
+    @endsection
 
-</body>
+    </body>
 </html>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

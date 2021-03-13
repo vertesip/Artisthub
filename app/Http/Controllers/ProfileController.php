@@ -51,6 +51,7 @@ class ProfileController extends Controller
     public function update($user)
     {
         $data = request()->validate([
+            'artistname' =>'required',
             'title' => 'required',
             'description' => 'required',
             'url' => 'url',

@@ -11,6 +11,21 @@
                         <h1>Edit Profile</h1>
                     </div>
                     <div class="form-group row">
+                        <label for="artistname" class="col-md-4 col-form-label">Artist Name</label>
+
+                        <input id="artistname" type="text"
+                               class="form-control @error('artistname') is-invalid @enderror"
+                               name="artistname"
+                               value="{{ $user->profile->artistname ?? '' }}"
+                               required autocomplete="artistname" autofocus>
+
+                        @error('artistname')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="form-group row">
                         <label for="title" class="col-md-4 col-form-label">Title</label>
 
                         <input id="title" type="text"
