@@ -2,8 +2,8 @@
     justify-content: space-evenly
 }
 .homecenter {
-    margin-top: 100px !important;
-    margin-bottom: 100px;
+    margin-top: 57px !important;
+    height: 100vh;
 }
 .banner{
     margin-top: -60px !important;
@@ -63,6 +63,13 @@ body{
     visibility: visible;
     opacity: 1;
 }
+
+/* Saját */
+
+.carousel{
+
+}
+
 
 /* Player */
 
@@ -432,4 +439,5 @@ button {
 .eq-bar:nth-child(3) {
     animation: eq .8s ease-in-out infinite .4s;
 }
+
 

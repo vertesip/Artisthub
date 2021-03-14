@@ -1,44 +1,15 @@
 @extends('layouts.hometemplate')
 
 @section('content')
-    <div class="container-fluid d-flex justify-content-center">
+    <div class="h-100">
 
-        <div class="col-10">
-            <div class="row justify-content-center pb-5">
-                <div class="col-md-12 text-center">
+        <div class="h-100">
+            <div class="row justify-content-between h-100">
+                <div class="col-md-3 text-center bg-white">
                     <div class="card">
-                        <div class="carousel-wrapper">
-                            <div class="carousel-slider">
-                            <span class="storycenter"><img class="rounded-circle" style="width: 100px;height: 100px"
-                                                           src="https://photos.bandsintown.com/thumb/9713536.jpeg">Excision</span>
-                                <span class="storycenter"><img class="rounded-circle" style="width: 100px;height: 100px"
-                                                               src="https://photos.bandsintown.com/thumb/9508083.jpeg">Subtronics</span>
-                                <span class="storycenter"><img class="rounded-circle" style="width: 100px;height: 100px"
-                                                               src="https://photos.bandsintown.com/thumb/9131158.jpeg">Peekaboo</span>
-                                <span class="storycenter"><img class="rounded-circle" style="width: 100px;height: 100px"
-                                                               src="https://photos.bandsintown.com/thumb/9016611.jpeg">Midnight T.</span>
-                                <span class="storycenter"><img class="rounded-circle" style="width: 100px;height: 100px"
-                                                               src="https://photos.bandsintown.com/thumb/9032785.jpeg">He$h</span>
-                                <span class="storycenter"><img class="rounded-circle" style="width: 100px;height: 100px"
-                                                               src="https://photos.bandsintown.com/thumb/8659522.jpeg">Svdden Death</span>
-                                <span class="storycenter"><img class="rounded-circle" style="width: 100px;height: 100px"
-                                                               src="https://photos.bandsintown.com/thumb/6311197.jpeg">Snails</span>
-                                <span class="storycenter"><img class="rounded-circle" style="width: 100px;height: 100px"
-                                                               src="https://photos.bandsintown.com/thumb/10216026.jpeg">Marshmello</span>
-                                <span class="storycenter"><img class="rounded-circle" style="width: 100px;height: 100px"
-                                                               src="https://photos.bandsintown.com/thumb/10485906.jpeg">Illenium</span>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-between">
-                <div class="col-md-3 text-center">
-                    <div class="card" style="width: 120%">
                         <div class="card-header bg-dark text-light">{{ __('New tracks') }}</div>
 
-                        <div class="card-body">
+                        <div>
                             @foreach($musics as $music)
                                 <div class="col-12">
                                     <?php echo $music->embedLink;?>
@@ -49,10 +20,43 @@
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
-                    <div class="card" style="width: 120%">
-                        <div class="card-header bg-dark text-light">{{ __('Posts') }}</div>
+                    <div class="row justify-content-center pb-5">
+                        <div class="card">
+                            <div class="carousel-wrapper">
+                                <div class="carousel-slider">
+                            <span class="storycenter"><img class="rounded-circle" style="width: 100px;height: 100px"
+                                                           src="https://photos.bandsintown.com/thumb/9713536.jpeg">Excision</span>
+                                    <span class="storycenter"><img class="rounded-circle"
+                                                                   style="width: 100px;height: 100px"
+                                                                   src="https://photos.bandsintown.com/thumb/9508083.jpeg">Subtronics</span>
+                                    <span class="storycenter"><img class="rounded-circle"
+                                                                   style="width: 100px;height: 100px"
+                                                                   src="https://photos.bandsintown.com/thumb/9131158.jpeg">Peekaboo</span>
+                                    <span class="storycenter"><img class="rounded-circle"
+                                                                   style="width: 100px;height: 100px"
+                                                                   src="https://photos.bandsintown.com/thumb/9016611.jpeg">Midnight T.</span>
+                                    <span class="storycenter"><img class="rounded-circle"
+                                                                   style="width: 100px;height: 100px"
+                                                                   src="https://photos.bandsintown.com/thumb/9032785.jpeg">He$h</span>
+                                    <span class="storycenter"><img class="rounded-circle"
+                                                                   style="width: 100px;height: 100px"
+                                                                   src="https://photos.bandsintown.com/thumb/8659522.jpeg">Svdden Death</span>
+                                    <span class="storycenter"><img class="rounded-circle"
+                                                                   style="width: 100px;height: 100px"
+                                                                   src="https://photos.bandsintown.com/thumb/6311197.jpeg">Snails</span>
+                                    <span class="storycenter"><img class="rounded-circle"
+                                                                   style="width: 100px;height: 100px"
+                                                                   src="https://photos.bandsintown.com/thumb/10216026.jpeg">Marshmello</span>
+                                    <span class="storycenter"><img class="rounded-circle"
+                                                                   style="width: 100px;height: 100px"
+                                                                   src="https://photos.bandsintown.com/thumb/10485906.jpeg">Illenium</span>
 
-                        <div class="card-body">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div>
                             @foreach($posts as $post)
 
                                 <div class="container pb-3">
@@ -97,8 +101,8 @@
 
                     </div>
                 </div>
-                <div class="col-md-3 text-center">
-                    <div class="card">
+                <div class="col-md-3 text-center bg-white">
+                    <div>
                         <div class="card-header bg-dark text-light">{{ __('Online Users') }}</div>
 
                         <div class="card-body">
@@ -115,6 +119,12 @@
                                     </li>
                                 @endif
                             @endforeach
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card-header bg-dark text-light">{{ __('Chat') }}</div>
+                        <div class="card-body">
+
                         </div>
                     </div>
                 </div>
