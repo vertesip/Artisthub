@@ -35,6 +35,9 @@ Route::get('/post/create', [App\Http\Controllers\PostsController::class, 'create
 Route::post('/post', [App\Http\Controllers\PostsController::class, 'store'])->name('post');
 Route::get('/post/{post}', [App\Http\Controllers\PostsController::class, 'show'])->name('post.show');
 
+Route::get('/commentsDisplay', [App\Http\Controllers\CommentController::class, 'commentsDisplay'])->name('commentsDisplay');
+Route::post('/comments/create', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
+
 Route::get('/music/upload', [App\Http\Controllers\MusicController::class, 'upload'])->name('upload');
 Route::post('/music', [App\Http\Controllers\MusicController::class, 'store'])->name('storedupload');
 

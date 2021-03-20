@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Intervention\Image\Facades\Image;
 
 use App\Models\Post;
@@ -21,7 +23,7 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-        $post = new \App\Models\Post();
+        $post = new Post();
         $post->user_id = Auth::id();
         $post->text = $request->input('caption');
         $post->image = $request->file('image')->store('pictures', 'public');
@@ -32,8 +34,9 @@ class PostsController extends Controller
         $post->save();
 
         return redirect('/profile/'. auth()->user()->id)->with('message', 'Post has been added!');
+
     }
-    public function show(\App\Models\Post $post)
+    public function show(Post $post)
     {
         return view('show', compact('post'));
     }

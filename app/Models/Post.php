@@ -7,10 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
     protected $guarded = [];
-    /**
-     * @var mixed
-     */
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     public function user()
     {

@@ -16,7 +16,7 @@
                             <div class="font-weight-bold">
                                 <a href="/profile/{{$post->user->id}}">
                                     <span class="text-dark">
-                                        {{$post->user->username}}</span>
+                                        {{$post->user->name}}</span>
                                 </a>
                             </div>
                         </div>
@@ -25,9 +25,35 @@
                     <p>
                     <span class="font-weight-bold">
                         <a href="/profile/{{$post->user->id}}">
-                            <span class="text-dark">{{$post->user->username}}</span>
+                            <span class="text-dark">{{$post->user->name}}</span>
                         </a></span>{{ $post->text }}</p>
+                <div class="d-flex pb-2">
+                    <form action="" method="post" class="pr-2">
+                        @csrf
+                        <button type="submit">Like</button>
+                    </form>
+                    <form action="" method="post">
+                        @csrf
+                        <button type="submit">Unlike</button>
+                    </form>
                 </div>
+                <h4>Display Comments</h4>
+                @include('commentsDisplay')
+                <hr>
+                <h4>Add comment</h4>
+                <form method="post" action="{{ route('comments.store') }}">
+                    @csrf
+                    <div class="form-group">
+                        <textarea class="form-control" name="body"></textarea>
+                        <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-success" value="Add Comment" />
+                    </div>
+                </form>
+                </div>
+            <hr/>
+
             </div>
         </div>
     </div>

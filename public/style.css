@@ -66,10 +66,10 @@ body{
 
 /* Saját */
 
-.carousel{
-
+.show-comments{
+    display: flex;
+    justify-content: center;
 }
-
 
 /* Player */
 
