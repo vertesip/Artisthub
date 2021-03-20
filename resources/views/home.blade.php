@@ -12,7 +12,13 @@
                         <div>
                             @foreach($musics as $music)
                                 <div class="col-12">
-                                    <?php echo $music->embedLink;?>
+                                    {{$music->songtitle}}<br>
+                                    {{$music->artist}}<br>
+                                    {{$music->genre}}<br>
+                                    <img src="/storage/{{$music->image}}" class="w-100">
+                                    <audio controls>
+                                        <source src="/storage/{{$music->audio}}">
+                                    </audio>
                                     <hr>
                                 </div>
                             @endforeach

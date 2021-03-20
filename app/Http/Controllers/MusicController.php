@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Music;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
@@ -21,9 +22,19 @@ class MusicController extends Controller
     {
 
 
-        $music = new \App\Models\Music();
+        $music = new Music();
         $music->user_id = Auth::id();
-        $music->embedLink = $request->input('sclink');
+        $music->genre = $request->input('genre');
+        $music->artist = $request->input('artist');
+        $music->songtitle = $request->input('songtitle');
+        $music->audio = $request->file('audio')->store('music', 'public');
+
+        $music->image = $request->file('image')->store('covers', 'public');
+
+        $image = Image::make(public_path("storage/{$music->image}"))->fit(1200, 1200);
+
+        $image->save();
+
 
         $music->save();
 

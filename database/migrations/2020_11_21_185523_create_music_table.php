@@ -16,7 +16,11 @@ class CreateMusicTable extends Migration
         Schema::create('music', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->text('embedLink');
+            $table->text('genre');
+            $table->text('artist');
+            $table->text('songtitle');
+            $table->text('image');
+            $table->text('audio');
             $table->timestamps();
 
             $table->index('user_id');
