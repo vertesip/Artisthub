@@ -20,7 +20,6 @@ class CommentController extends Controller
         $comment->body = $request->input('body');
 
         $comment->save();
-        Session::put('comment', $comment);
 
         return back();
     }

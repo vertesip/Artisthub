@@ -28,14 +28,21 @@
                             <span class="text-dark">{{$post->user->name}}</span>
                         </a></span>{{ $post->text }}</p>
                 <div class="d-flex pb-2">
-                    <form action="" method="post" class="pr-2">
+                    @if (!$post->likedBy(auth()->user()))
+                    <form action="{{ route('post.like',$post->id) }}" method="post" class="pr-2">
                         @csrf
                         <button type="submit">Like</button>
                     </form>
-                    <form action="" method="post">
+                    @else
+                    <form action="{{ route('post.delete',$post->id) }}" method="post">
                         @csrf
+                        @method('DELETE')
                         <button type="submit">Unlike</button>
                     </form>
+                    @endif
+                </div>
+                <div>
+                    <p>Likes one this post: {{ $post->likes->count() }} {{Str::plural('like', $post->likes->count())}}</p>
                 </div>
                 <h4>Display Comments</h4>
                 @include('commentsDisplay')

@@ -36,11 +36,6 @@ class Comment extends Model
      *
      * @var array
      */
-    public function replies()
-    {
-        return $this->hasMany(Comment::class);
-    }
-
 
     use HasFactory;
 }
