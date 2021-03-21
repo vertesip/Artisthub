@@ -11,12 +11,25 @@ use Intervention\Image\Facades\Image;
 
 class CommentController extends Controller
 {
-    public function store(Request $request)
+    public function commentsPostStore(Request $request)
     {
         $comment = new Comment();
 
         $comment->user_id = auth()->user()->id;
         $comment->post_id =  $request->input('post_id');
+        $comment->body = $request->input('body');
+
+        $comment->save();
+
+        return back();
+    }
+
+    public function commentsMusicStore(Request $request)
+    {
+        $comment = new Comment();
+
+        $comment->user_id = auth()->user()->id;
+        $comment->music_id =  $request->input('music_id');
         $comment->body = $request->input('body');
 
         $comment->save();

@@ -20,8 +20,6 @@ class MusicController extends Controller
 
     public function store(Request $request)
     {
-
-
         $music = new Music();
         $music->user_id = Auth::id();
         $music->genre = $request->input('genre');
@@ -34,11 +32,14 @@ class MusicController extends Controller
         $image = Image::make(public_path("storage/{$music->image}"))->fit(1200, 1200);
 
         $image->save();
-
-
         $music->save();
 
         return redirect('/profile/'. auth()->user()->id)->with('message', 'Music has been added!');
+    }
+
+    public function show(Music $music)
+    {
+        return view('showmusic', compact('music'));
     }
 
 

@@ -117,12 +117,24 @@
                 </div>
                 </div>
                 <div class="card-body container justify-content-center text-center">
-                    @foreach($user->music as $music)
-                        <div class="col-12">
-                                    <?php echo $music->embedLink;?>
-                            <hr>
-                        </div>
-                    @endforeach
+                    <div>
+                        @foreach($user->music as $music)
+                            <div class="col-12">
+                                <div class="d-flex justify-content-around p-2" style="flex-direction: row-reverse">
+                                    <div class="title-wrapper">
+                                        <h2>{{$music->artist}}</h2>
+                                        <h3>{{$music->songtitle}}</h3>
+                                        <p>{{$music->genre}}</p>
+                                    </div>
+                                    <img src="/storage/{{$music->image}}" class="w-50">
+                                </div>
+                                <audio controls class="w-100 mt-1">
+                                    <source src="/storage/{{$music->audio}}">
+                                </audio>
+                                <hr>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
