@@ -50,7 +50,7 @@
                 </div>
                 <div class="ml-4 mr-4">
                     <a class="text-light d-flex align-items-center"
-                       href="{{ route('home') }}">
+                       href="{{ route('discover') }}">
                         {{ __('Discover') }}</a>
                 </div>
             </div>

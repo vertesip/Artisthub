@@ -6,6 +6,8 @@ use App\Models\Music;
 use App\Models\Post;
 use http\Env\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LikeController extends Controller
 {
@@ -57,6 +59,4 @@ class LikeController extends Controller
 
         return back();
     }
-
-
 }

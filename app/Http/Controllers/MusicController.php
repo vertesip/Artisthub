@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Music;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class MusicController extends Controller
@@ -40,6 +41,28 @@ class MusicController extends Controller
     public function show(Music $music)
     {
         return view('showmusic', compact('music'));
+    }
+
+    public function discover()
+    {
+        $musicId = $this->getRandomLikedMusicId();
+
+        $musics = $this->getMusicsBySameGenre(Music::where('id',$musicId)->first());
+
+        return view('discover', [
+            'musics' => $musics,
+        ]);
+    }
+
+    public function getRandomLikedMusicId()
+    {
+        $likedIDs = DB::table('likes')->whereNotNull('music_id')->pluck('music_id')->toArray();
+        return $likedIDs[rand(0,sizeof($likedIDs)-1)];
+    }
+
+    public function getMusicsBySameGenre(Music $music)
+    {
+       return Music::where('genre',$music->genre)->where('id','!=',$music->id)->get();
     }
 
 

@@ -51,6 +51,9 @@ Route::get('/profile/{username}', [App\Http\Controllers\ProfileController::class
 Route::get('/profile/{username}/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
 Route::patch('/profile/{username}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
+Route::get('/discover' , [App\Http\Controllers\MusicController::class, 'discover'])->name('discover');
+Route::get('/getRandomLikedMusicId' , [App\Http\Controllers\MusicController::class, 'getRandomLikedMusicId'])->name('getRandomLikedMusicId');
+
 //Search
 Route::get('/search' , [App\Http\Controllers\ProfileController::class, 'search'])->name('search');
 
