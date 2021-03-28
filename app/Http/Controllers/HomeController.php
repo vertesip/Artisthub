@@ -32,7 +32,7 @@ class HomeController extends Controller
         $users = auth()->user()->following()->pluck('profiles.user_id');
         $posts = Post::whereIn('user_id',$users)->latest()->get();
         $musics = Music::whereIn('user_id',$users)->latest()->get();
-        $all_user = User::all();
+        $all_user = User::where('id', '!=', Auth::id())->get();
 
         return view('home', [
             'posts' => $posts,

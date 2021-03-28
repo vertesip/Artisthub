@@ -41,6 +41,10 @@ Route::get('/commentsDisplay', [App\Http\Controllers\CommentController::class, '
 Route::post('/comments/create/post', [App\Http\Controllers\CommentController::class, 'commentsPostStore'])->name('comments.postStore');
 Route::post('/comments/create/music', [App\Http\Controllers\CommentController::class, 'commentsMusicStore'])->name('comments.musicStore');
 
+Route::post('/send-message', [App\Http\Controllers\MessageController::class, 'sendMessage'])->name('message.send-message');
+
+
+
 Route::get('/music/upload', [App\Http\Controllers\MusicController::class, 'upload'])->name('upload');
 Route::post('/music', [App\Http\Controllers\MusicController::class, 'store'])->name('storedupload');
 Route::get('/music/{music}', [App\Http\Controllers\MusicController::class, 'show'])->name('music.show');
@@ -53,6 +57,8 @@ Route::patch('/profile/{username}', [App\Http\Controllers\ProfileController::cla
 
 Route::get('/discover' , [App\Http\Controllers\MusicController::class, 'discover'])->name('discover');
 Route::get('/getRandomLikedMusicId' , [App\Http\Controllers\MusicController::class, 'getRandomLikedMusicId'])->name('getRandomLikedMusicId');
+
+Route::get('/conversation/{userId}' , [App\Http\Controllers\MessageController::class, 'conversation'])->name('message.conversation');
 
 //Search
 Route::get('/search' , [App\Http\Controllers\ProfileController::class, 'search'])->name('search');

@@ -22,7 +22,8 @@
         "laravelcollective/html": "^6.2",
         "symfony/config": "^5.1",
         "symfony/routing": "5.1",
-        "symfony/translation": "^5.1"
+        "symfony/translation": "^5.1",
+      "ext-http": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

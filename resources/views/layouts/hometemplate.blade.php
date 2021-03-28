@@ -11,7 +11,11 @@
     <title>{{ config('ArtistHUB', 'ArtistHUB') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+            integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh"
+            crossorigin="anonymous"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -128,7 +132,8 @@
                                    href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    <button type="button" class="w-50 btn"><img class="w-75" src="\storage\Icons\128-log-out.png">
+                                    <button type="button" class="w-50 btn"><img class="w-75"
+                                                                                src="\storage\Icons\128-log-out.png">
                                     </button>
                                     {{ __('Logout') }}
 
@@ -156,23 +161,27 @@
                 <div class="ap-panel">
                     <div class="ap-item ap--playback">
                         <button class="ap-controls ap-prev-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" height="24" viewBox="0 0 24 24" width="24">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" height="24" viewBox="0 0 24 24"
+                                 width="24">
                                 <path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/>
                                 <path d="M0 0h24v24H0z" fill="none"/>
                             </svg>
                         </button>
                         <button class="ap-controls ap-toggle-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#fff"  height="30" viewBox="0 0 24 24" width="30" class="ap--play">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" height="30" viewBox="0 0 24 24"
+                                 width="30" class="ap--play">
                                 <path d="M8 5v14l11-7z"/>
                                 <path d="M0 0h24v24H0z" fill="none"/>
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" height="30" viewBox="0 0 24 24" width="30" class="ap--pause">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" height="30" viewBox="0 0 24 24"
+                                 width="30" class="ap--pause">
                                 <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
                                 <path d="M0 0h24v24H0z" fill="none"/>
                             </svg>
                         </button>
                         <button class="ap-controls ap-next-btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" height="24" viewBox="0 0 24 24" width="24">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" height="24" viewBox="0 0 24 24"
+                                 width="24">
                                 <path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/>
                                 <path d="M0 0h24v24H0z" fill="none"/>
                             </svg>
@@ -197,29 +206,37 @@
                     <div class="ap-item ap--settings">
                         <div class="ap-controls ap-volume-container">
                             <button class="ap-volume-btn">
-                                <svg fill="#ffffff" height="48" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" class="ap--volume-on">
-                                    <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                                <svg fill="#ffffff" height="48" viewBox="0 0 24 24" width="24"
+                                     xmlns="http://www.w3.org/2000/svg" class="ap--volume-on">
+                                    <path
+                                        d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
                                     <path d="M0 0h24v24H0z" fill="none"/>
                                 </svg>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" height="48" viewBox="0 0 24 24" width="24" class="ap--volume-off">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="#ffffff" height="48" viewBox="0 0 24 24"
+                                     width="24" class="ap--volume-off">
                                     <path d="M7 9v6h4l5 5V4l-5 5H7z"/>
                                     <path d="M0 0h24v24H0z" fill="none"/>
                                 </svg>
                             </button>
                             <div class="ap-volume">
-                                <div class="ap-volume-progress"><div class="ap-volume-bar"></div></div>
+                                <div class="ap-volume-progress">
+                                    <div class="ap-volume-bar"></div>
+                                </div>
                             </div>
                         </div>
                         <button class="ap-controls ap-repeat-btn">
-                            <svg fill="#ffffff"  height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <svg fill="#ffffff" height="24" viewBox="0 0 24 24" width="24"
+                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 0h24v24H0z" fill="none"/>
                                 <path d="M7 7h10v3l4-4-4-4v3H5v6h2V7zm10 10H7v-3l-4 4 4 4v-3h12v-6h-2v4z"/>
                             </svg>
                         </button>
                         <button class="ap-controls ap-playlist-btn">
-                            <svg fill="#ffffff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                            <svg fill="#ffffff" height="24" viewBox="0 0 24 24" width="24"
+                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M0 0h24v24H0z" fill="none"/>
-                                <path d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/>
+                                <path
+                                    d="M15 6H3v2h12V6zm0 4H3v2h12v-2zM3 16h8v-2H3v2zM17 6v8.18c-.31-.11-.65-.18-1-.18-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3V8h3V6h-5z"/>
                             </svg>
                         </button>
                     </div>
@@ -230,14 +247,13 @@
 </div>
 
 <script src="{{ mix('js/app.js') }}"></script>
-<script src="{{asset('public/js/carousel.js')}}" type="text/javascript"></script>
-<script src="public/player.js"></script>
 </body>
-
+@stack('scripts')
 </html>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
@@ -248,16 +264,3 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"
         integrity="sha512-HGOnQO9+SP1V92SrtZfjqxxtLmVzqZpjFFekvzZVWoiASSQgSr4cw9Kqd2+l8Llp4Gm0G8GIFJ4ddwZilcdb8A=="
         crossorigin="anonymous"></script>
-<script>
-    $('.carousel-slider').slick({
-        prevArrow: "<img class='a-left control-c prev slick-prev' style='height: 400px' src='http://borvidekdev.effixpro.hu/wp-content/uploads/2020/11/ginop_portal_left_gray.svg'>",
-        nextArrow: "<img class='a-right control-c next slick-next' style='height: 400px' src='http://borvidekdev.effixpro.hu/wp-content/uploads/2020/11/ginop_portal_right_gray.svg'>",
-        dots: false,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        variableWidth: true,
-        autoplaySpeed: 50
-    });
-</script>
