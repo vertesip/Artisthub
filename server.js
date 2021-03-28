@@ -8,6 +8,8 @@ const io = require('socket.io')(http, {
         origin: '*',
     }
 });
+const Redis = require('ioredis');
+const redis = new Redis();
 let users = [];
 
 /*chat.get('/', (req, res) => {
@@ -17,6 +19,16 @@ let users = [];
 http.listen(8005, function() {
     console.log('listening on *:8005');
 });
+
+redis.subscribe('private-channel', function () {
+    console.log("subscribed to channel");
+});
+
+redis.on('message',function (channel, message) {
+    console.log(channel);
+    console.log(message);
+})
+
 
 io.on('connection', function (socket) {
     socket.on("user_connected",function (user_id){

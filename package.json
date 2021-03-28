@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "express": "^4.17.1",
+        "ioredis": "^4.24.5",
         "socket.io": "^4.0.0",
         "vue": "^2.6.12"
     }

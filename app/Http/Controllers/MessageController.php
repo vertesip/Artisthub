@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\User;
-
+use App\Events\PrivateMessageEvent;
+use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,7 +41,7 @@ class MessageController extends Controller
         if ($message->save()) {
 
             try {
-                /*  $message->users()->attach($sender_id, ['receiver_id' => $receiver_id]);*/
+                $message->users()->attach($sender_id, ['receiver_id' => $receiver_id]);
                 $sender = User::where('id', '=', $sender_id)->first();
 
                 $data = [];
@@ -50,6 +51,9 @@ class MessageController extends Controller
                 $data['content'] = $message->message;
                 $data['created_at'] = $message->created_at;
                 $data['message_id'] = $message->id;
+
+              /*  event(new PrivateMessageEvent($data));*/
+
 
                 return response()->json([
                     'data' => $data,
