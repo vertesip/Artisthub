@@ -5,34 +5,44 @@
 
         <div class="h-100">
             <div class="row justify-content-between h-100">
-                <div class="col-md-3 text-center bg-white">
-                    <div class="card">
+                <div class="col-md-3 text-center p-0">
+                    <div class="card" style="border: 0">
                         <div class="card-header bg-dark text-light">{{ __('New tracks') }}</div>
 
                         <div>
                             @foreach($musics as $music)
-                                <div class="col-12">
-                                    <div class="d-flex justify-content-around p-2" style="flex-direction: row-reverse">
-                                        <a href="/music/{{$music->id}}">
-                                            <div class="title-wrapper">
-                                                <h2>{{$music->artist}}</h2>
-                                                <h3>{{$music->songtitle}}</h3>
-                                                <p>{{$music->genre}}</p>
+                                <div class="col-10 row" style="margin: 0 auto">
+                                    <div class="d-flex p-2" style="flex-direction: row-reverse">
+                                        <div class="col align-self-center">
+                                            <a href="/music/{{$music->id}}" class="w-100">
+                                                <div class="title-wrapper">
+                                                    <h3>{{$music->artist}}</h3>
+                                                    <h4>{{$music->songtitle}}</h4>
+                                                    <p>{{$music->genre}}</p>
+                                                    <p>{{ $music->likes->count() }} {{Str::plural('like', $music->likes->count())}}</p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="col">
+                                            <div class="playContainer" onclick="playMusic({{$music->artist}}, {{$music->audio}})" class="w-100">
+                                                <img src="/storage/{{$music->image}}" class="w-100">
+                                                <div class="play"><img
+                                                        src="http://cdn1.iconfinder.com/data/icons/flavour/button_play_blue.png"/>
+                                                </div>
                                             </div>
-                                        </a>
-                                        <img src="/storage/{{$music->image}}" class="w-50">
-
+                                        </div>
                                     </div>
-                                    <audio controls class="w-100 mt-1">
-                                        <source src="/storage/{{$music->audio}}">
-                                    </audio>
-                                    <hr>
+                                    {{--  <audio controls class="w-100 mt-1">
+                                           <source src="/storage/{{$music->audio}}">
+                                       </audio> --}}
+
                                 </div>
+                                <hr>
                             @endforeach
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 text-center">
+                <div class="col-md-4 text-center m-3">
                     {{--     <div class="row justify-content-center pb-5">
                                <div class="card">
                                    <div class="carousel-wrapper">
@@ -72,16 +82,16 @@
                         <div>
                             @foreach($posts as $post)
 
-                                <div class="container pb-3">
-                                    <div class="row">
-                                        <div class="col-8">
+                                <div class="container p-3">
+                                    <div class="row d-flex flex-column-reverse">
+                                        <div class="col-12">
                                             <a href="/post/{{$post->id}}">
                                                 <img src="/storage/{{ $post->image }}" class="w-100">
                                             </a>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-12">
                                             <div class="d-flex align-items-center">
-                                                <div class="pr-3">
+                                                <div class="p-2">
                                                     <img src="{{$post->user->profile->profileImage()}}"
                                                          class="rounded-circle w-100"
                                                          style="max-width: 50px">
@@ -98,19 +108,18 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <p>
-           <span class="font-weight-bold">
-               <a href="/profile/{{$post->user->id}}">
-               </a></span>{{ $post->text }}</p>
+
                                         </div>
                                     </div>
                                 </div>
-                                <div class="show-comments ">
+                                <span class="font-weight-bold">
+               <a href="/profile/{{$post->user->id}}">
+               </a></span>  <p class="col-12 text-left">{{ $post->text }}</p>
+                                <button id="commentButton" class="mb-3">Show comments</button>
+                                <div class="show-comments">
                                     @include('commentsDisplay')
                                 </div>
                                 <hr/>
-                                <h4>Add comment</h4>
                                 <form method="post" action="{{ route('comments.postStore') }}">
                                     @csrf
                                     <div class="form-group">
@@ -128,46 +137,50 @@
 
                     </div>
                 </div>
-                <div class="col-md-3 text-center bg-white">
-                    <div>
-                        <div class="card-header bg-dark text-light">{{ __('Online Users') }}</div>
+                <div class="col-md-3">
+                    <div class="position-fixed w-100">
+                        <div class="d-flex bg-white">
+                            <div class="w-100">
+                                <div class="card-header bg-dark text-light">{{ __('Online Users') }}</div>
 
-                        <div class="card-body">
-                            @foreach($all_user as $user)
-                                @if($user->isOnline())
-                                    <li class="text-success pb-2">
-                                        <a class="text-success"
-                                           href="{{ route('id.show', ['userId' => $user->id]) }}">
-                                            <img src="{{$user->profile->profileImage()}}"
-                                                 class="rounded-circle w-100"
-                                                 style="max-width: 30px">
-                                            {{$user->name}}
-                                        </a>
-                                    </li>
-                                @endif
-                            @endforeach
+                                <div class="card-body">
+                                    @foreach($all_user as $user)
+                                        @if($user->isOnline())
+                                            <li class="text-success pb-2">
+                                                <a class="text-success"
+                                                   href="{{ route('id.show', ['userId' => $user->id]) }}">
+                                                    <img src="{{$user->profile->profileImage()}}"
+                                                         class="rounded-circle w-100"
+                                                         style="max-width: 30px">
+                                                    {{$user->name}}
+                                                </a>
+                                            </li>
+                                        @endif
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <div class="card-header bg-dark text-light">{{ __('Chat') }}</div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="users">
-                                        <ul class="list-group list-chat-item" style="list-style-type: none;">
-                                            @if($all_user->count())
-                                                @foreach($all_user as $user)
-                                                    <li class="chat-user-list">
-                                                        <a href="{{ route('message.conversation', $user->id)}}">
-                                                            <img src="{{$user->profile->profileImage()}}"
-                                                                 class="rounded-circle w-100"
-                                                                 style="max-width: 30px">
-                                                            {{$user->name}}
-                                                        </a>
-                                                    </li>
-                                                @endforeach
-                                            @endif
-                                        </ul>
+                        <div>
+                            <div class="card-header bg-dark text-light">{{ __('Chat') }}</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="users">
+                                            <ul class="list-group list-chat-item" style="list-style-type: none;">
+                                                @if($all_user->count())
+                                                    @foreach($all_user as $user)
+                                                        <li class="chat-user-list">
+                                                            <a href="{{ route('message.conversation', $user->id)}}">
+                                                                <img src="{{$user->profile->profileImage()}}"
+                                                                     class="rounded-circle w-100"
+                                                                     style="max-width: 30px">
+                                                                {{$user->name}}
+                                                            </a>
+                                                        </li>
+                                                    @endforeach
+                                                @endif
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -178,4 +191,3 @@
         </div>
     </div>
 @endsection
-

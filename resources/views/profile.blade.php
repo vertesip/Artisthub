@@ -6,7 +6,7 @@
         window.userId = "{{$user->id}}";
         window.follows = "{{($follows) ? 'true' : 'false'}}";
     </script>
-    <div class="banner shadow-lg"><img class="position-absolute"
+    <div class="banner shadow-lg"><img class="position-absolute w-100"
                              src="/storage/{{$user->profile->bannerimage}}">
         <div class="container-fluid">
             <div class="row">

@@ -25,7 +25,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         body {
-            background: url('img/bg.webp') no-repeat center center fixed;
+            background: url('img/krys-amon-CfBlMP12zT8-unsplash.jpg') no-repeat center center;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -36,9 +36,9 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/home') }}">
+            <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('ArtistHUB', 'ArtistHUB') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -58,7 +58,7 @@
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link text-light" href="{{ url('/') }}">{{ __('Login') }}</a>
+                            <a class="nav-link text-light" href="{{ route('login')  }}">{{ __('Login') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
@@ -91,10 +91,10 @@
     </nav>
 
     <main class="homecenter">
-        <div class="div logo" style="display: flex;
+       {{-- <div class="div logo" style="display: flex;
     place-content: center;">
             <img src="{{URL::to('/img/logo_size.png')}}">
-        </div>
+        </div> --}}
         @yield('content')
     </main>
 </div>
