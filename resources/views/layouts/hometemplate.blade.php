@@ -244,7 +244,12 @@
             </div>
         </div>
     </div>
+    <footer class="bg-dark d-flex justify-content-center" style="margin-bottom: 50px">
+        <p class="text-white d-flex align-items-center" style="    margin: 0;
+    height: 40px;">ArtistHUB made by: Vértesi Patrik</p>
+    </footer>
 </div>
+
 
 <script src="{{ mix('js/app.js') }}"></script>
 </body>

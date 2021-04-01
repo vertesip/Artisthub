@@ -41,19 +41,18 @@ class MessageController extends Controller
         if ($message->save()) {
 
             try {
-                $message->users()->attach($sender_id, ['receiver_id' => $receiver_id]);
+            // $message->users()->attach($sender_id, ['receiver_id' => $receiver_id]);
                 $sender = User::where('id', '=', $sender_id)->first();
 
                 $data = [];
                 $data['sender_id'] = $sender_id;
                 $data['sender_name'] = $sender->name;
-                $data['receiver_id'] = $receiver_id;
+                $data['receiver_id'] = intval($receiver_id);
                 $data['content'] = $message->message;
                 $data['created_at'] = $message->created_at;
                 $data['message_id'] = $message->id;
 
-              /*  event(new PrivateMessageEvent($data));*/
-
+                event(new PrivateMessageEvent($data));
 
                 return response()->json([
                     'data' => $data,

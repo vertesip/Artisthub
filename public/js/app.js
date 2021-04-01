@@ -49770,19 +49770,18 @@ var app = new Vue({
     FollowButton: FollowButton
   },
   template: "<div class='follow-wrapper'><follow-button v-bind:user-id='{userId}' v-bind:follows='{follows}'></follow-button></div>",
-  created: function created() {
-    // `this` points to the vm instance
+  created: function created() {// `this` points to the vm instance
     //console.log(this.follows);
-    console.log(this);
+    //console.log(this);
   }
 });
-$("#commentButton").click(function () {
-  $(".show-comments").slideToggle();
+console.log($(".commentButton"));
+$(".commentButton").click(function () {
+  $(this).next().slideToggle();
 });
-/*$("#commentButton").click(function(){
-    $(this).next().slideToggle();
-});*/
-//Lejátszó
+$(".ProfileCommentButton").click(function () {
+  $(this).parent().next().slideToggle();
+}); //Lejátszó
 
 ;
 
@@ -50221,7 +50220,8 @@ $("#commentButton").click(function () {
       audio.removeEventListener('error', error, false);
       audio.removeEventListener('timeupdate', update, false);
       audio.removeEventListener('ended', doEnd, false);
-      player.parentNode.removeChild(player); // Playlist
+      /*    player.parentNode.removeChild(player); */
+      // Playlist
 
       pl.removeEventListener('click', listHandler, false);
       pl.parentNode.removeChild(pl);
@@ -50294,16 +50294,22 @@ $("#commentButton").click(function () {
 
 
 var iconImage = 'http://funkyimg.com/i/21pX5.png';
+var musics = document.getElementsByClassName("playContainer");
 
-function playMusic(musicName, musicLocation) {
+var playMusic = function playMusic() {
+  AP.destroy();
   AP.init({
     playList: [{
       'icon': iconImage,
-      'title': musicName,
-      'file': '/storage/' + musicLocation
+      'title': this.dataset.artist,
+      'file': '/storage/' + this.dataset.audio
     }]
   });
-}
+};
+
+Array.from(musics).forEach(function (musics) {
+  musics.addEventListener('click', playMusic);
+});
 
 /***/ }),
 

@@ -41,17 +41,18 @@ const app = new Vue({
     created: function () {
         // `this` points to the vm instance
         //console.log(this.follows);
-        console.log(this);
+        //console.log(this);
     }
 });
 
-$("#commentButton").click(function(){
-    $(".show-comments").slideToggle();
+console.log($(".commentButton"));
+$(".commentButton").click(function(){
+    $(this).next().slideToggle();
 });
 
-/*$("#commentButton").click(function(){
-    $(this).next().slideToggle();
-});*/
+$(".ProfileCommentButton").click(function(){
+    $(this).parent().next().slideToggle();
+});
 
 
 //Lejátszó
@@ -535,11 +536,11 @@ $("#commentButton").click(function(){
             audio.removeEventListener('error', error, false);
             audio.removeEventListener('timeupdate', update, false);
             audio.removeEventListener('ended', doEnd, false);
-            player.parentNode.removeChild(player);
+            /*    player.parentNode.removeChild(player); */
 
-            // Playlist
-            pl.removeEventListener('click', listHandler, false);
-            pl.parentNode.removeChild(pl);
+               // Playlist
+              pl.removeEventListener('click', listHandler, false);
+               pl.parentNode.removeChild(pl);
 
             audio.pause();
             apActive = false;
@@ -613,19 +614,22 @@ $("#commentButton").click(function(){
 // test image for web notifications
 var iconImage = 'http://funkyimg.com/i/21pX5.png';
 
+let musics = document.getElementsByClassName("playContainer");
 
-
-function playMusic(musicName, musicLocation){
-
+let playMusic = function () {
+    AP.destroy();
     AP.init({
         playList: [
             {
                 'icon': iconImage,
-                'title': musicName,
-                'file': '/storage/'+ musicLocation
+                'title': this.dataset.artist,
+                'file': '/storage/'+ this.dataset.audio
             }
         ]
     });
 }
 
+Array.from(musics).forEach(function(musics) {
+    musics.addEventListener('click', playMusic);
+});
 

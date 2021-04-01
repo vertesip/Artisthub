@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Music;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -49,8 +50,11 @@ class MusicController extends Controller
 
         $musics = $this->getMusicsBySameGenre(Music::where('id',$musicId)->first());
 
+        $all_user = User::where('id', '!=', Auth::id())->get();
+
         return view('discover', [
             'musics' => $musics,
+            'all_user' => $all_user,
         ]);
     }
 

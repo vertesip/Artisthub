@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PrivateMessageEvent;
 use App\Models\Comment;
 use App\Models\Music;
 use App\Models\Post;

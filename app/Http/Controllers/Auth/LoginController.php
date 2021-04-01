@@ -44,6 +44,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+
     //Google login
     public function redirectToGoogle()
     {

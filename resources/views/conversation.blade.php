@@ -86,6 +86,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 
@@ -128,7 +129,7 @@
                     $chatInput.html("");
                     sendMessage(message);
                     return false;
-                }app
+                }
             });
 
             function sendMessage(message) {
@@ -142,9 +143,10 @@
                 formData.append('receiver_id', friendId);
 
 
+
                 $.ajax({
                     url: url,
-             /*       headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},*/
+                    //headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                     type: 'POST',
                     data: formData,
                     processData: false,
@@ -154,6 +156,9 @@
                         if (response.success) {
                             console.log(response.data);
                         }
+                    },
+                    error: function(error){
+                        console.log(error);
                     }
                 });
             }

@@ -30,6 +30,20 @@
           </advancedOptions>
         </fileTransfer>
       </webServer>
+      <webServer id="e92931e4-9231-4c62-8ca8-e4183598ef76" name="cranio" url="http://craniosopron.com">
+        <fileTransfer host="craniosopron.com" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="09a64aa8-f6c3-4662-947b-76336153369c" name="farkascnc" url="http://farkaskftcnc.hu">
+        <fileTransfer host="farkaskftcnc.hu" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

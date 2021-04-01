@@ -28,21 +28,24 @@
                             <span class="text-dark">{{$post->user->name}}</span>
                         </a></span>{{ $post->text }}</p>
                 <div class="d-flex pb-2">
+
                     @if (!$post->likedBy(auth()->user()))
                     <form action="{{ route('post.like',$post->id) }}" method="post" class="pr-2">
                         @csrf
-                        <button type="submit">Like</button>
+                        <button type="submit">
+                            <img src="/img/heart.svg">
+                        </button>
                     </form>
                     @else
-                    <form action="{{ route('post.delete',$post->id) }}" method="post">
+                    <form action="{{ route('post.delete',$post->id) }}" method="post" class="pr-2">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">Unlike</button>
+                        <button type="submit">
+                            <img src="/img/heartfull.png" style="width: 24px">
+                        </button>
                     </form>
                     @endif
-                </div>
-                <div>
-                    <p>Likes one this post: {{ $post->likes->count() }} {{Str::plural('like', $post->likes->count())}}</p>
+                        <p>{{ $post->likes->count() }}</p>
                 </div>
                 <h4>Display Comments</h4>
                 @include('commentsDisplay')

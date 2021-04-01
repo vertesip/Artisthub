@@ -19,12 +19,17 @@
                                                     <h3>{{$music->artist}}</h3>
                                                     <h4>{{$music->songtitle}}</h4>
                                                     <p>{{$music->genre}}</p>
-                                                    <p>{{ $music->likes->count() }} {{Str::plural('like', $music->likes->count())}}</p>
+                                                    <div class="d-flex justify-content-center">
+                                                        <p class="pr-2"><img src="/img/heartfull.png"
+                                                                             style="width: 24px"></p>
+                                                        <p>{{ $music->likes->count() }}</p>
+                                                    </div>
                                                 </div>
                                             </a>
                                         </div>
                                         <div class="col">
-                                            <div class="playContainer" onclick="playMusic({{$music->artist}}, {{$music->audio}})" class="w-100">
+                                            <div data-artist="{{$music->artist}}" data-audio="{{$music->audio}}"
+                                                 class="playContainer" class="w-100">
                                                 <img src="/storage/{{$music->image}}" class="w-100">
                                                 <div class="play"><img
                                                         src="http://cdn1.iconfinder.com/data/icons/flavour/button_play_blue.png"/>
@@ -32,10 +37,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    {{--  <audio controls class="w-100 mt-1">
-                                           <source src="/storage/{{$music->audio}}">
-                                       </audio> --}}
-
                                 </div>
                                 <hr>
                             @endforeach
@@ -80,6 +81,23 @@
                            </div> --}}
                     <div class="card">
                         <div>
+                            @if(auth()->user()->following->count() == 0)
+                                <h4>Seems like you're not following anyone!</h4>
+                                <h4>Here are some users you could follow:</h4>
+                                <div class="p-3">
+                                    <div class="d-flex justify-content-between">
+                                        @foreach($all_user as $user)
+                                            <a
+                                                href="{{ route('id.show', ['userId' => $user->id]) }}">
+                                                <img src="{{$user->profile->profileImage()}}"
+                                                     class="rounded-circle w-100"
+                                                     style="max-width: 50px">
+                                                {{$user->name}}
+                                            </a>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
                             @foreach($posts as $post)
 
                                 <div class="container p-3">
@@ -99,30 +117,37 @@
                                                 <div>
                                                     <div class="font-weight-bold">
 
-                           <span class="text-dark">
+                                                    <span class="text-dark">
                                            <a href="/profile/{{$post->user->id}}">
-                               {{$post->user->name}}
+                                               {{$post->user->name}}
                                            </a></span>
 
 
                                                     </div>
                                                 </div>
+                                                {{-- <p>{{$post->timestamp}}</p> --}}
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                                 <span class="font-weight-bold">
                <a href="/profile/{{$post->user->id}}">
-               </a></span>  <p class="col-12 text-left">{{ $post->text }}</p>
-                                <button id="commentButton" class="mb-3">Show comments</button>
+               </a></span>
+                                <div class="d-flex justify-content-between col-12" style="word-break: break-all">
+                                    <p class="text-left">{{ $post->text }}</p>
+                                    <div class="d-flex justify-content-end">
+                                        <p class="pr-2 pl-2"><img src="/img/heartfull.png" style="width: 24px"></p>
+                                        <p>{{ $post->likes->count() }}</p>
+                                    </div>
+                                </div>
+                                <button class="mb-3 commentButton">Show comments</button>
                                 <div class="show-comments">
                                     @include('commentsDisplay')
                                 </div>
                                 <hr/>
                                 <form method="post" action="{{ route('comments.postStore') }}">
                                     @csrf
-                                    <div class="form-group">
+                                    <div class="form-group mr-4 ml-4">
                                         <textarea class="form-control" name="body"></textarea>
                                         <input type="hidden" name="post_id" value="{{$post->id}}"/>
                                     </div>

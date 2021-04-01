@@ -2,6 +2,13 @@
 <project version="4">
   <component name="PublishConfigData" serverName="sajat">
     <serverData>
+      <paths name="cranio">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="dorina">
         <serverdata>
           <mappings>
@@ -10,6 +17,13 @@
         </serverdata>
       </paths>
       <paths name="effix">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="farkascnc">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
