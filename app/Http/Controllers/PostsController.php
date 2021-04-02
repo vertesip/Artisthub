@@ -36,6 +36,17 @@ class PostsController extends Controller
         return redirect('/profile/'. auth()->user()->id)->with('message', 'Post has been added!');
 
     }
+
+
+    public function postDestroy(Post $post, Request $request)
+    {
+
+        Post::whereId($post->id)->delete();
+
+        return back();
+    }
+
+
     public function show(Post $post)
     {
         return view('show', compact('post'));

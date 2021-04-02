@@ -12,6 +12,15 @@
                         <div>
                             @foreach($musics as $music)
                                 <div class="col-10 row" style="margin: 0 auto">
+                                    @if($music->user->id == Auth::user()->id)
+                                        <form action="{{ route('musicDestroy',$music->id) }}" method="post" class="pr-2 w-100 d-flex justify-content-md-start" style="justify-content: flex-star">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit">
+                                                <p style="margin: 0">X</p>
+                                            </button>
+                                        </form>
+                                    @endif
                                     <div class="d-flex p-2" style="flex-direction: row-reverse">
                                         <div class="col align-self-center">
                                             <a href="/music/{{$music->id}}" class="w-100">
@@ -109,12 +118,12 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="d-flex align-items-center">
-                                                <div class="p-2">
+                                                <div class="p-2" style="min-width: fit-content">
                                                     <img src="{{$post->user->profile->profileImage()}}"
                                                          class="rounded-circle w-100"
                                                          style="max-width: 50px">
                                                 </div>
-                                                <div>
+                                                <div class="d-flex col-sm-auto">
                                                     <div class="font-weight-bold">
 
                                                     <span class="text-dark">
@@ -125,7 +134,15 @@
 
                                                     </div>
                                                 </div>
-                                                {{-- <p>{{$post->timestamp}}</p> --}}
+                                                @if($post->user->id == Auth::user()->id)
+                                                <form action="{{ route('postDestroy',$post->id) }}" method="post" class="pr-2 w-100 d-flex justify-content-md-end" style="justify-content: flex-end">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit">
+                                                        <p style="margin: 0">X</p>
+                                                    </button>
+                                                </form>
+                                                    @endif
                                             </div>
                                         </div>
                                     </div>

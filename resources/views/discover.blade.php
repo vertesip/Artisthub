@@ -20,7 +20,7 @@
             </div>
             <div class="row justify-content-between h-100">
                 <div class="card-header col-12 bg-dark text-light">{{ __('New tracks by genres you like') }}</div>
-                <div class="d-flex">
+                <div class="d-flex w-100 flex-wrap">
                     @foreach($musics as $music)
                         @if(!$music->likedBy(auth()->user()))
                             <div class="card col-3">
@@ -59,38 +59,43 @@
                         @endif
                     @endforeach
                 </div>
-                <div class="card">
-                    <div class="card-header bg-dark text-light">{{ __('All new tracks') }}</div>
-                    <div>
-                        @foreach($musics as $music)
-                            <div class="col-10 row" style="margin: 0 auto">
-                                <div class="d-flex p-2" style="flex-direction: row-reverse">
-                                    <div class="col align-self-center">
-                                        <a href="/music/{{$music->id}}" class="w-100">
-                                            <div class="title-wrapper">
-                                                <h3>{{$music->artist}}</h3>
-                                                <h4>{{$music->songtitle}}</h4>
-                                                <p>{{$music->genre}}</p>
-                                                <div class="d-flex justify-content-center">
-                                                    <p class="pr-2"><img src="/img/heartfull.png"
-                                                                         style="width: 24px"></p>
-                                                    <p>{{ $music->likes->count() }}</p>
+                <div class="card w-100">
+                    <div class="card-header col-12 bg-dark text-light">{{ __('All new tracks') }}</div>
+                    <div class="d-flex flex-wrap">
+                        @foreach($all_music as $music)
+                                <div class="card col-3">
+                                    <div class="d-flex">
+                                        <div class="col-12 row" style="margin: 0 auto">
+                                            <div class="d-flex p-2" style="flex-direction: row-reverse">
+                                                <div class="col align-self-center">
+                                                    <a href="/music/{{$music->id}}" class="w-100">
+                                                        <div class="title-wrapper">
+                                                            <h3>{{$music->artist}}</h3>
+                                                            <h4>{{$music->songtitle}}</h4>
+                                                            <p>{{$music->genre}}</p>
+                                                            <div class="d-flex justify-content-center">
+                                                                <p class="pr-2"><img src="/img/heartfull.png"
+                                                                                     style="width: 24px"></p>
+                                                                <p>{{ $music->likes->count() }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="col">
+                                                    <div data-artist="{{$music->artist}}" data-audio="{{$music->audio}}"
+                                                         class="playContainer" class="w-100">
+                                                        <img src="/storage/{{$music->image}}" class="w-100">
+                                                        <div class="play"><img
+                                                                src="http://cdn1.iconfinder.com/data/icons/flavour/button_play_blue.png"/>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </a>
-                                    </div>
-                                    <div class="col">
-                                        <div data-artist="{{$music->artist}}" data-audio="{{$music->audio}}"
-                                             class="playContainer" class="w-100">
-                                            <img src="/storage/{{$music->image}}" class="w-100">
-                                            <div class="play"><img
-                                                    src="http://cdn1.iconfinder.com/data/icons/flavour/button_play_blue.png"/>
-                                            </div>
                                         </div>
+                                        <hr>
                                     </div>
                                 </div>
-                            </div>
-                            <hr>
+
                         @endforeach
                     </div>
                 </div>

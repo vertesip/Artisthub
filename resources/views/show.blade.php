@@ -8,11 +8,11 @@
             </div>
             <div class="col-4">
                 <div class="d-flex align-items-center">
-                    <div class="pr-3">
+                    <div class="pr-3" style="min-width: fit-content">
                         <img src="{{$post->user->profile->profileImage()}}" class="rounded-circle w-100"
                              style="max-width: 50px">
                         </div>
-                    <div>
+                    <div class="d-flex col-sm-auto">
                             <div class="font-weight-bold">
                                 <a href="/profile/{{$post->user->id}}">
                                     <span class="text-dark">
@@ -20,6 +20,15 @@
                                 </a>
                             </div>
                         </div>
+                    @if($post->user->id == Auth::user()->id)
+                        <form action="{{ route('postDestroy',$post->id) }}" method="post" class="pr-2 w-100 d-flex justify-content-md-end" style="justify-content: flex-end">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">
+                                <p style="margin: 0">X</p>
+                            </button>
+                        </form>
+                    @endif
                     </div>
                     <hr>
                     <p>
@@ -28,7 +37,6 @@
                             <span class="text-dark">{{$post->user->name}}</span>
                         </a></span>{{ $post->text }}</p>
                 <div class="d-flex pb-2">
-
                     @if (!$post->likedBy(auth()->user()))
                     <form action="{{ route('post.like',$post->id) }}" method="post" class="pr-2">
                         @csrf
@@ -37,7 +45,7 @@
                         </button>
                     </form>
                     @else
-                    <form action="{{ route('post.delete',$post->id) }}" method="post" class="pr-2">
+                    <form action="{{ route('post.like.delete',$post->id) }}" method="post" class="pr-2">
                         @csrf
                         @method('DELETE')
                         <button type="submit">

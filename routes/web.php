@@ -33,9 +33,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/post/create', [App\Http\Controllers\PostsController::class, 'create'])->name('posts');
 Route::post('/post', [App\Http\Controllers\PostsController::class, 'store'])->name('post');
+Route::delete('/post/{post}/destroy', [App\Http\Controllers\PostsController::class, 'postDestroy'])->name('postDestroy');
 Route::get('/post/{post}', [App\Http\Controllers\PostsController::class, 'show'])->name('post.show');
-Route::post('/post/{post}/likes', [App\Http\Controllers\LikeController::class, 'postStore'])->name('post.like');
-Route::delete('/post/{post}/likes', [App\Http\Controllers\LikeController::class, 'postDestroy'])->name('post.delete');
+Route::post('/post/{post}/likes', [App\Http\Controllers\LikeController::class, 'postLikeStore'])->name('post.like');
+Route::delete('/post/{post}/likes', [App\Http\Controllers\LikeController::class, 'postLikeDestroy'])->name('post.like.delete');
 
 Route::get('/commentsDisplay', [App\Http\Controllers\CommentController::class, 'commentsDisplay'])->name('commentsDisplay');
 Route::post('/comments/create/post', [App\Http\Controllers\CommentController::class, 'commentsPostStore'])->name('comments.postStore');
@@ -43,13 +44,12 @@ Route::post('/comments/create/music', [App\Http\Controllers\CommentController::c
 
 Route::post('/send-message', [App\Http\Controllers\MessageController::class, 'sendMessage'])->name('message.send-message');
 
-
-
 Route::get('/music/upload', [App\Http\Controllers\MusicController::class, 'upload'])->name('upload');
 Route::post('/music', [App\Http\Controllers\MusicController::class, 'store'])->name('storedupload');
 Route::get('/music/{music}', [App\Http\Controllers\MusicController::class, 'show'])->name('music.show');
-Route::post('/music/{music}/likes', [App\Http\Controllers\LikeController::class, 'musicStore'])->name('music.like');
-Route::delete('/music/{music}/likes', [App\Http\Controllers\LikeController::class, 'musicDestroy'])->name('music.delete');
+Route::post('/music/{music}/likes', [App\Http\Controllers\LikeController::class, 'musicLikeStore'])->name('music.like');
+Route::delete('/music/{music}/likes', [App\Http\Controllers\LikeController::class, 'musicLikeDestroy'])->name('music.like.delete');
+Route::delete('/music/{music}/destroy', [App\Http\Controllers\MusicController::class, 'musicDestroy'])->name('musicDestroy');
 
 Route::get('/profile/{username}', [App\Http\Controllers\ProfileController::class, 'profile'])->name('profile.show');
 Route::get('/profile/{username}/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');

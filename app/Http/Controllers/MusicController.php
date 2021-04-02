@@ -49,24 +49,34 @@ class MusicController extends Controller
         $musicId = $this->getRandomLikedMusicId();
 
         $musics = $this->getMusicsBySameGenre(Music::where('id',$musicId)->first());
-
+        $all_music = Music::all();
         $all_user = User::where('id', '!=', Auth::id())->get();
 
         return view('discover', [
             'musics' => $musics,
             'all_user' => $all_user,
+            'all_music' => $all_music,
         ]);
     }
 
     public function getRandomLikedMusicId()
     {
         $likedIDs = DB::table('likes')->whereNotNull('music_id')->pluck('music_id')->toArray();
-        return $likedIDs[rand(0,sizeof($likedIDs)-1)];
+        return isset($likedIDs[rand(0,sizeof($likedIDs)-1)]);
     }
 
     public function getMusicsBySameGenre(Music $music)
     {
        return Music::where('genre',$music->genre)->where('id','!=',$music->id)->get();
+    }
+
+
+    public function musicDestroy(Music $music, Request $request)
+    {
+
+        Music::whereId($music->id)->delete();
+
+        return back();
     }
 
 

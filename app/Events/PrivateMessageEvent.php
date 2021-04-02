@@ -37,4 +37,15 @@ class PrivateMessageEvent implements ShouldBroadcast
     {
         return new Channel('private-channel');
     }
+
+/*    public function broadcastWith()
+    {
+        return [
+            'data' => $this->data,
+        ];
+    }
+
+    public function handle() {
+
+    }*/
 }

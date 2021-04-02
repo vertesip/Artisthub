@@ -1,32 +1,25 @@
 @extends('layouts.hometemplate')
 
 @section('content')
-
     <div class="container card p-3">
         <div class="row">
-            <div class="col-8">
-                <div class="col-12">
-                    <div class="d-flex justify-content-around p-2" style="flex-direction: row-reverse">
-                            <div class="title-wrapper">
-                                <h2>{{$music->artist}}</h2>
-                                <h3>{{$music->songtitle}}</h3>
-                                <p>{{$music->genre}}</p>
-                            </div>
-                            <img src="/storage/{{$music->image}}" class="w-50">
+
+            <div class="col">
+                <div data-artist="{{$music->artist}}" data-audio="{{$music->audio}}"
+                     class="playContainer" class="w-100">
+                    <img src="/storage/{{$music->image}}" class="w-100">
+                    <div class="play"><img
+                            src="http://cdn1.iconfinder.com/data/icons/flavour/button_play_blue.png"/>
                     </div>
-                    <audio controls class="w-100 mt-1">
-                        <source src="/storage/{{$music->audio}}">
-                    </audio>
-                    <hr>
                 </div>
             </div>
             <div class="col-4">
                 <div class="d-flex align-items-center">
-                    <div class="pr-3">
+                    <div class="pr-3" style="min-width: fit-content">
                         <img src="{{$music->user->profile->profileImage()}}" class="rounded-circle w-100"
                              style="max-width: 50px">
                     </div>
-                    <div>
+                    <div class="d-flex col-sm-auto">
                         <div class="font-weight-bold">
                             <a href="/profile/{{$music->user->id}}">
                                     <span class="text-dark">
@@ -34,6 +27,15 @@
                             </a>
                         </div>
                     </div>
+                    @if($music->user->id == Auth::user()->id)
+                        <form action="{{ route('musicDestroy',$music->id) }}" method="post" class="pr-2 w-100 d-flex justify-content-md-end" style="justify-content: flex-end">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">
+                                <p style="margin: 0">X</p>
+                            </button>
+                        </form>
+                    @endif
                 </div>
                 <hr>
                 <p>
@@ -45,21 +47,27 @@
                     @if (!$music->likedBy(auth()->user()))
                         <form action="{{ route('music.like',$music->id) }}" method="post" class="pr-2">
                             @csrf
-                            <button type="submit">Like</button>
+                            <button type="submit">
+                                <img src="/img/heart.svg">
+                            </button>
                         </form>
                     @else
-                        <form action="{{ route('music.delete',$music->id) }}" method="post">
+                        <form action="{{ route('music.like.delete',$music->id) }}" method="post" class="pr-2">
                             @csrf
                             @method('DELETE')
-                            <button type="submit">Unlike</button>
+                            <button type="submit">
+                                <img src="/img/heartfull.png" style="width: 24px">
+                            </button>
                         </form>
                     @endif
+                    <p>{{ $music->likes->count() }}</p>
                 </div>
-                <div>
-                    <p>Likes one this music: {{ $music->likes->count() }} {{Str::plural('like', $music->likes->count())}}</p>
+                <div class="title-wrapper">
+                    <h3>{{$music->artist}}</h3>
+                    <h4>{{$music->songtitle}}</h4>
+                    <p>{{$music->genre}}</p>
                 </div>
                 <h4>Display Comments</h4>
-
                 @include('musicCommentsDisplay')
                 <hr>
                 <h4>Add comment</h4>

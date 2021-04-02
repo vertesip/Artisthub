@@ -49775,6 +49775,13 @@ var app = new Vue({
     //console.log(this);
   }
 });
+/*import Echo from "laravel-echo";
+
+window.Echo = new Echo({
+    broadcaster: "socket.io",
+    host: window.location.hostname + ":8005"
+});*/
+
 console.log($(".commentButton"));
 $(".commentButton").click(function () {
   $(this).next().slideToggle();

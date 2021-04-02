@@ -8,6 +8,7 @@ use App\Events\PrivateMessageEvent;
 use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 
 class MessageController extends Controller
 {
@@ -41,7 +42,7 @@ class MessageController extends Controller
         if ($message->save()) {
 
             try {
-            // $message->users()->attach($sender_id, ['receiver_id' => $receiver_id]);
+            //  $message->users()->attach($sender_id, ['receiver_id' => $receiver_id]);
                 $sender = User::where('id', '=', $sender_id)->first();
 
                 $data = [];
