@@ -41,6 +41,8 @@ Route::delete('/post/{post}/likes', [App\Http\Controllers\LikeController::class,
 Route::get('/commentsDisplay', [App\Http\Controllers\CommentController::class, 'commentsDisplay'])->name('commentsDisplay');
 Route::post('/comments/create/post', [App\Http\Controllers\CommentController::class, 'commentsPostStore'])->name('comments.postStore');
 Route::post('/comments/create/music', [App\Http\Controllers\CommentController::class, 'commentsMusicStore'])->name('comments.musicStore');
+Route::delete('/comments/{comment}/post/destroy', [App\Http\Controllers\CommentController::class, 'commentsPostDestroy'])->name('post.commentDestroy');
+Route::delete('/comments/{comment}/music/destroy', [App\Http\Controllers\CommentController::class, 'commentsMusicDestroy'])->name('music.commentDestroy');
 
 Route::post('/send-message', [App\Http\Controllers\MessageController::class, 'sendMessage'])->name('message.send-message');
 

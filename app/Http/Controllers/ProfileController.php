@@ -96,9 +96,9 @@ class ProfileController extends Controller
     //Keresés
     public function search(Request $request)
     {
-        $getQuery = $request->getQueryString();
+        $getQuery = urldecode($request->getQueryString());
         $sub = substr($getQuery, 7);
-        $user = User::where('username', $sub)->firstOrFail();
+        $user = User::where('name', $sub)->firstOrFail();
         $follows= (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
         return view('profile', [

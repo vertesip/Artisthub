@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
+use App\Models\Like;
 use App\Models\Music;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,7 +18,8 @@ class MusicController extends Controller
         $this->middleware('auth');
     }
 
-    public function upload(){
+    public function upload()
+    {
         return view('upload');
     }
 
@@ -36,7 +39,7 @@ class MusicController extends Controller
         $image->save();
         $music->save();
 
-        return redirect('/profile/'. auth()->user()->id)->with('message', 'Music has been added!');
+        return redirect('/profile/' . auth()->user()->id)->with('message', 'Music has been added!');
     }
 
     public function show(Music $music)
@@ -46,9 +49,13 @@ class MusicController extends Controller
 
     public function discover()
     {
-        $musicId = $this->getRandomLikedMusicId();
 
-        $musics = $this->getMusicsBySameGenre(Music::where('id',$musicId)->first());
+        $musicId = $this->getRandomLikedMusicId();
+        if (Auth::user()->likes()->whereNotNull('music_id')->count() > 0) {
+            $musics = $this->getMusicsBySameGenre(Music::where('id', $musicId)->first());
+        } else {
+            $musics = Music::all();
+        }
         $all_music = Music::all();
         $all_user = User::where('id', '!=', Auth::id())->get();
 
@@ -59,25 +66,26 @@ class MusicController extends Controller
         ]);
     }
 
+
     public function getRandomLikedMusicId()
     {
         $likedIDs = DB::table('likes')->whereNotNull('music_id')->pluck('music_id')->toArray();
-        return isset($likedIDs[rand(0,sizeof($likedIDs)-1)]);
+        if (Auth::user()->likes()->whereNotNull('music_id')->count() > 0) {
+            return $likedIDs[rand(0, sizeof($likedIDs) - 1)];
+        }
     }
 
     public function getMusicsBySameGenre(Music $music)
     {
-       return Music::where('genre',$music->genre)->where('id','!=',$music->id)->get();
+        return Music::where('genre', $music->genre)->whereNotNull('id', '!=', $music->id)->get();
     }
-
 
     public function musicDestroy(Music $music, Request $request)
     {
 
         Music::whereId($music->id)->delete();
-
+        Like::where('music_id', $music->id)->delete();
+        Comment::where('music_id', $music->id)->delete();
         return back();
     }
-
-
 }

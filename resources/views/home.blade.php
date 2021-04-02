@@ -1,7 +1,7 @@
 @extends('layouts.hometemplate')
 
 @section('content')
-    <div class="h-100">
+    <div class="h-100" style="margin-top: -60px">
 
         <div class="h-100">
             <div class="row justify-content-between h-100">

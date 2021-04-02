@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Comment;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -42,6 +43,8 @@ class PostsController extends Controller
     {
 
         Post::whereId($post->id)->delete();
+        Like::where('post_id',$post->id)->delete();
+        Comment::where('post_id',$post->id)->delete();
 
         return back();
     }
