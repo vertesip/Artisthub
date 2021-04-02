@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use app\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 class ProfileController extends Controller
@@ -30,11 +31,11 @@ class ProfileController extends Controller
         $user = User::findOrFail($user);
 
 
-        $follows= (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
         return view('profile', [
             'user' => $user,
-            'follows' =>$follows,
+            'follows' => $follows,
         ]);
     }
 
@@ -43,15 +44,19 @@ class ProfileController extends Controller
     {
         $user = User::findOrFail($user);
 
-        return view('edit', [
-            'user' => $user,
-        ]);
+        if (Auth::user()->id == $user->id) {
+            return view('edit', [
+                'user' => $user,
+            ]);
+        } else {
+            return back();
+        }
     }
 
     public function update($user)
     {
         $data = request()->validate([
-            'artistname' =>'required',
+            'artistname' => 'required',
             'title' => 'required',
             'description' => 'required',
             'url' => 'url',
@@ -84,7 +89,7 @@ class ProfileController extends Controller
         auth()->user()->profile()->update($data);
 
         $user = User::findOrFail($user);
-        $follows= (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
         return view('profile', [
             'user' => $user,
@@ -99,11 +104,11 @@ class ProfileController extends Controller
         $getQuery = urldecode($request->getQueryString());
         $sub = substr($getQuery, 7);
         $user = User::where('name', $sub)->firstOrFail();
-        $follows= (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 
         return view('profile', [
             'user' => $user,
-            'follows' =>$follows,
+            'follows' => $follows,
         ]);
     }
 
