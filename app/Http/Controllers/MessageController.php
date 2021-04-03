@@ -4,16 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Models\User;
-use App\Events\PrivateMessageEvent;
-use http\Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redis;
+use App\Events\PrivateMessageEvent;
 
 class MessageController extends Controller
 {
-    public function conversation($userId)
-    {
+    public function conversation($userId) {
         $users = User::where('id', '!=', Auth::id())->get();
         $friendInfo = User::findOrFail($userId);
         $myInfo = User::find(Auth::id());
@@ -26,8 +23,7 @@ class MessageController extends Controller
         return view('conversation', $this->data);
     }
 
-    public function sendMessage(Request $request)
-    {
+    public function sendMessage(Request $request) {
         $request->validate([
             'message' => 'required',
             'receiver_id' => 'required'
@@ -40,15 +36,14 @@ class MessageController extends Controller
         $message->message = $request->message;
 
         if ($message->save()) {
-
             try {
-            //  $message->users()->attach($sender_id, ['receiver_id' => $receiver_id]);
+                $message->users()->attach($sender_id, ['receiver_id' => $receiver_id]);
                 $sender = User::where('id', '=', $sender_id)->first();
 
                 $data = [];
                 $data['sender_id'] = $sender_id;
                 $data['sender_name'] = $sender->name;
-                $data['receiver_id'] = intval($receiver_id);
+                $data['receiver_id'] = $receiver_id;
                 $data['content'] = $message->message;
                 $data['created_at'] = $message->created_at;
                 $data['message_id'] = $message->id;
@@ -60,12 +55,9 @@ class MessageController extends Controller
                     'success' => true,
                     'message' => 'Message sent successfully'
                 ]);
-
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $message->delete();
             }
         }
-
     }
-
 }

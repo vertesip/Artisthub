@@ -16,7 +16,7 @@
             <div class="col-9 pt-5">
                 <div class="d-flex justify-content-between align-items-baseline">
                     <div class="d-flex align-items-center pb-3">
-                        <div class="h1 text-light bg-dark p-2">{{ $user->name }}</div>
+                        <div class="h1 text-light bg-dark p-2">@if(!empty($user->profile->artistname)){{$user->profile->artistname}} @else{{ $user->name }} @endif</div>
                         <div class="follow" id="follow-button" v-model:user-id="{{ $user->id }}">
                             <follow-button></follow-button>
                         </div>
@@ -29,23 +29,6 @@
                 {{ session()->get('message') }}
             </div>
         @endif
-        {{--      <div class="d-flex">
-            <div class="container justify-content-center">
-                <div class="container justify-content-center row" style="width: 105%">
-                    <h2 class="text-light"></h2>
-                </div>
-            </div>
-            <div class="container justify-content-center card" >
-                <div class="card-header container bg-dark shadow-sm justify-content-center row" style="width: 105%">
-                    <h2 class="text-light">Posts</h2>
-                </div>
-            </div>
-            <div class="container justify-content-center card">
-                <div class="card-header container bg-dark shadow-sm justify-content-center row" style="width: 105%">
-                    <h2 class="text-light">Tracks</h2>
-                </div>
-            </div>
-        </div>--}}
         <div class="d-flex row container-fluid">
             <div class="card-body col-4 pt-5 text-center">
                 <div class="justify-content-center row">

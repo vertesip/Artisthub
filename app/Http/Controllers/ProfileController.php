@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use app\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Builder;
@@ -103,6 +104,8 @@ class ProfileController extends Controller
     {
         $getQuery = urldecode($request->getQueryString());
         $sub = substr($getQuery, 7);
+     /*   $profile = Profile::where('artistname', $sub)->firstOrFail();
+        dd($profile->user()); */
         $user = User::where('name', $sub)->firstOrFail();
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
 

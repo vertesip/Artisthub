@@ -2,7 +2,6 @@
 
 namespace App\Events;
 
-use App\Models\Message;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,14 +13,12 @@ use Illuminate\Queue\SerializesModels;
 class PrivateMessageEvent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-
     public $data;
-
 
     /**
      * Create a new event instance.
      *
-     * @param $data
+     * @return void
      */
     public function __construct($data)
     {
@@ -38,14 +35,7 @@ class PrivateMessageEvent implements ShouldBroadcast
         return new Channel('private-channel');
     }
 
-/*    public function broadcastWith()
-    {
-        return [
-            'data' => $this->data,
-        ];
-    }
-
     public function handle() {
 
-    }*/
+    }
 }
