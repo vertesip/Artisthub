@@ -5,7 +5,7 @@ use App\Models\Comment;
 $comments = Comment::all() ?>
 <div>
     @foreach($comments as $comment)
-            <div class="d-flex @if(Request::is('home')) justify-content-center @endif">
+            <div class="d-flex @if(Request::is('home') or Request::is('login/google/callback') or Request::is('login/facebook/callback')) justify-content-center @endif">
             <a href="/profile/{{$comment->user->id}}"><strong>{{ $comment->user->name }}</strong></a>
             @if($comment->post_id == $post->id)
                 <div class="display-comment" style="">
