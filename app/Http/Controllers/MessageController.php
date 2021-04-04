@@ -23,6 +23,20 @@ class MessageController extends Controller
         return view('conversation', $this->data);
     }
 
+    public function conversationBlank() {
+
+        $users = User::where('id', '!=', Auth::id())->get();
+        $friendInfo = User::findOrFail(Auth::id());
+        $myInfo = User::find(Auth::id());
+
+        $this->data['users'] = $users;
+        $this->data['friendInfo'] = $friendInfo;
+        $this->data['myInfo'] = $myInfo;
+        $this->data['userId'] = Auth::id();
+
+        return view('conversation', $this->data);
+    }
+
     public function sendMessage(Request $request) {
         $request->validate([
             'message' => 'required',

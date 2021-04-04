@@ -21,7 +21,7 @@
                                             </button>
                                         </form>
                                     @endif
-                                    <div class="d-flex p-2" style="flex-direction: row-reverse">
+                                    <div class="d-flex p-2 flex-wrap" style="flex-direction: row-reverse">
                                         <div class="col align-self-center">
                                             <a href="/music/{{$music->id}}" class="w-100">
                                                 <div class="title-wrapper">
@@ -36,7 +36,7 @@
                                                 </div>
                                             </a>
                                         </div>
-                                        <div class="col">
+                                        <div class="col" style="min-width: 200px;">
                                             <div data-artist="{{$music->artist}}" data-audio="{{$music->audio}}"
                                                  class="playContainer" class="w-100">
                                                 <img src="/storage/{{$music->image}}" class="w-100">

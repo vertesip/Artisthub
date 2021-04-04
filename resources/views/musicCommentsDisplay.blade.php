@@ -3,7 +3,7 @@
 use App\Models\Comment;
 
 $comments = Comment::all() ?>
-<div>
+<div class="centerOnMobile">
     @foreach($comments as $comment)
         <div class="d-flex">
             <a href="/profile/{{$comment->user->id}}"><strong>{{ $comment->user->name }}</strong></a>

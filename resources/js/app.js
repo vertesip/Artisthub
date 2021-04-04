@@ -54,12 +54,37 @@ window.Echo = new Echo({
 
 
 console.log($(".commentButton"));
-$(".commentButton").click(function(){
+$(".commentButton").click(function () {
     $(this).next().slideToggle();
 });
 
-$(".ProfileCommentButton").click(function(){
+$(".ProfileCommentButton").click(function () {
     $(this).parent().next().slideToggle();
+});
+
+$('.navbar-toggler').click(function () {
+    $('.collapse').slideToggle('show');
+})
+
+$(document).ready(function() {
+    if ($(window).width() < 1100) {
+        $('.noCol3').removeClass('col-3');
+        $('.col-12-resize').removeClass('col-4');
+    } else if ($(window).width() >= 1100) {
+        $('.noCol3').addClass('col-3');
+        $('.col-12-resize').addClass('col-4');
+    }
+});
+
+
+$(window).resize(function () {
+    if ($(window).width() < 1100) {
+        $('.noCol3').removeClass('col-3');
+        $('.col-12-resize').removeClass('col-4');
+    } else if ($(window).width() >= 1100) {
+        $('.noCol3').addClass('col-3');
+        $('.col-12-resize').addClass('col-4');
+    }
 });
 
 function getCurrentTime() {
@@ -562,9 +587,9 @@ function timeFormat(datetime) {
             audio.removeEventListener('ended', doEnd, false);
             /*    player.parentNode.removeChild(player); */
 
-               // Playlist
-              pl.removeEventListener('click', listHandler, false);
-               pl.parentNode.removeChild(pl);
+            // Playlist
+            pl.removeEventListener('click', listHandler, false);
+            pl.parentNode.removeChild(pl);
 
             audio.pause();
             apActive = false;
@@ -647,13 +672,13 @@ let playMusic = function () {
             {
                 'icon': iconImage,
                 'title': this.dataset.artist,
-                'file': '/storage/'+ this.dataset.audio
+                'file': '/storage/' + this.dataset.audio
             }
         ]
     });
 }
 
-Array.from(musics).forEach(function(musics) {
+Array.from(musics).forEach(function (musics) {
     musics.addEventListener('click', playMusic);
 });
 

@@ -4,7 +4,7 @@
     <div class="container card p-3">
         <div class="row">
 
-            <div class="col">
+            <div class="col" style="min-width: 270px;">
                 <div data-artist="{{$music->artist}}" data-audio="{{$music->audio}}"
                      class="playContainer" class="w-100">
                     <img src="/storage/{{$music->image}}" class="w-100">
@@ -13,7 +13,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-4 col-12-resize">
                 <div class="d-flex align-items-center">
                     <div class="pr-3" style="min-width: fit-content">
                         <img src="{{$music->user->profile->profileImage()}}" class="rounded-circle w-100"

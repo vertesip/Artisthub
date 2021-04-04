@@ -18,7 +18,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
 
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -37,53 +36,55 @@
 </head>
 <body>
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm fixed-top">
-        <div class="container ">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm fixed-top justify-content-center">
+        <div class="container-xl">
             <a class="navbar-brand" href="{{ url('/home') }}">
                 {{ config('ArtistHUB', 'ArtistHUB') }}
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="{{ __('Toggle navigation') }}">
+            <button class="navbar-toggler" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="d-flex align-items-center">
-                <div>
-                    <a class="text-light d-flex align-items-center"
-                       href="/music/upload">
-                        {{ __('Upload') }}
-                    </a>
-                </div>
-                <div class="ml-4 mr-4">
-                    <a class="text-light d-flex align-items-center"
-                       href="{{ route('discover') }}">
-                        {{ __('Discover') }}</a>
-                </div>
-            </div>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
-                <ul class="navbar-nav ml-auto mr-auto" style="margin-left: 175px !important;">
-                    {!! Form::open(array('method' => 'Get','class'=>'d-flex','route' => array('search', $user ?? ''))) !!}
-                    {!! Form::text('search') !!}
-                    <button class="btn btn-light btn-sm ml-1">Search</button>
-                    {!! Form::close() !!}
-                </ul>
+
                 <!-- Right Side Of Navbar -->
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav w-100">
                     <!-- Authentication Links -->
 
-                    <div class="d-flex align-items-center">
+                    <div class="d-flex align-items-center w-100">
+
+
+                        <div class="d-flex align-items-start">
+                            <div>
+                                <a class="text-light d-flex align-items-center"
+                                   href="/music/upload">
+                                    {{ __('Upload') }}
+                                </a>
+                            </div>
+                            <div class="ml-4 mr-4">
+                                <a class="text-light d-flex align-items-center"
+                                   href="{{ route('discover') }}">
+                                    {{ __('Discover') }}</a>
+                            </div>
+                        </div>
+                        <ul class="navbar-nav ml-auto mr-auto searchbar">
+                            {!! Form::open(array('method' => 'Get','class'=>'d-flex justify-content-center','route' => array('search', $user ?? ''))) !!}
+                            {!! Form::text('search') !!}
+                            <button class="btn btn-light btn-sm ml-1">Search</button>
+                            {!! Form::close() !!}
+                        </ul>
                         <div>
                             <a class="text-light d-flex align-items-center"
-                               href="{{ route('home') }}">
-                                {{ __('Home') }}
-                            </a>
+                               href="{{ route('conversation') }}">
+                                {{ __('Chat') }}</a>
                         </div>
                         <div class="ml-4 mr-4">
                             <a class="text-light d-flex align-items-center"
-                               href="/post/create">New post</a>
+                               href="/post/create">Post</a>
                         </div>
+
                     </div>
                     @guest
                         <li class="nav-item">
@@ -95,8 +96,8 @@
                             </li>
                         @endif
                     @else
-                        <li class="nav-item dropdown">
 
+                        <li class="nav-item dropdown mt-1">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle text-light" href="#" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <img src="{{Auth::user()->profile->profileImage()}}"
@@ -104,12 +105,17 @@
                                      style="max-width: 25px">
                                 {{ Auth::user()->name }}
                             </a>
-
+                            <ul class="navbar-nav searchbar2 mr-auto ml-auto mt-1 mb-1">
+                                {!! Form::open(array('method' => 'Get','class'=>'d-flex justify-content-center','route' => array('search', $user ?? ''))) !!}
+                                {!! Form::text('search') !!}
+                                <button class="btn btn-light btn-sm ml-1">Search</button>
+                                {!! Form::close() !!}
+                            </ul>
                             <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item text-light d-flex align-items-center"
                                    href="{{ route('home') }}">
                                     <button type="button" class="w-50 btn"
-                                            onclick="window.location='{{ url("home") }}'"><img class="w-75"
+                                            onclick="window.location='{{ url("home") }}'"><img class="w-75 mobileNavPic"
                                                                                                src="\storage\Icons\053-home.png">
                                     </button>
                                     {{ __('Home') }}
@@ -117,7 +123,7 @@
                                 <a class="dropdown-item text-light d-flex align-items-center"
                                    href="{{ route('id.show', ['userId' => Auth::id()]) }}">
                                     <button type="button" class="w-50 btn"
-                                            onclick="window.location='{{ url("profile") }}'"><img class="w-75"
+                                            onclick="window.location='{{ url("profile") }}'"><img class="w-75 mobileNavPic"
                                                                                                   src="\storage\Icons\097-user.png">
                                     </button>
                                     {{ __('Profile') }}
@@ -125,7 +131,7 @@
                                 <a class="dropdown-item text-light d-flex align-items-center"
                                    href="/profile/{{Auth::id()}}/edit">
                                     <button type="button" class="w-50 btn"
-                                            onclick="window.location='{{ url("Edit profile") }}'"><img class="w-75"
+                                            onclick="window.location='{{ url("Edit profile") }}'"><img class="w-75 mobileNavPic"
                                                                                                        src="\storage\Icons\142-settings.png">
                                     </button>
                                     {{ __('Edit') }}
@@ -134,7 +140,7 @@
                                    href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    <button type="button" class="w-50 btn"><img class="w-75"
+                                    <button type="button" class="w-50 btn"><img class="w-75 mobileNavPic"
                                                                                 src="\storage\Icons\128-log-out.png">
                                     </button>
                                     {{ __('Logout') }}
@@ -191,7 +197,7 @@
                     </div>
                     <div class="ap-item ap--track">
                         <div class="ap-info">
-                            <div class="ap-title">Unknown</div>
+                            <div class="ap-title">Nothing is playing</div>
                             <div class="ap-time">
                                 <span class="ap-time--current">--</span>
                                 <span> / </span>

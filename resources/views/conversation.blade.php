@@ -35,7 +35,7 @@
         <div class="col-md-9 chat-section">
             <div class="chat-header">
                 <div class="chat-image">
-                    <img class="rounded-circle w-100" src="{{$friendInfo->profile->profileImage()}}"
+                    <img class="rounded-circle w-100" src="{{$user->profile->profileImage()}}"
                          style="max-width: 40px">
                 </div>
 
@@ -175,7 +175,7 @@
                 }
 
                 let name = '{{ $myInfo->name }}';
-                let image = "{{$user->profile->profileImage()}}";
+                let image = "{{$myInfo->profile->profileImage()}}";
                 let userInfo = '<div class="col-md-12 user-info">\n' +
                     '<div class="chat-image">\n' + '<img class="rounded-circle w-100" src='+image+' style="max-width: 40px">' +
                     '</div>\n' +

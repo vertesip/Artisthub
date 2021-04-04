@@ -49789,6 +49789,27 @@ $(".commentButton").click(function () {
 $(".ProfileCommentButton").click(function () {
   $(this).parent().next().slideToggle();
 });
+$('.navbar-toggler').click(function () {
+  $('.collapse').slideToggle('show');
+});
+$(document).ready(function () {
+  if ($(window).width() < 1100) {
+    $('.noCol3').removeClass('col-3');
+    $('.col-12-resize').removeClass('col-4');
+  } else if ($(window).width() >= 1100) {
+    $('.noCol3').addClass('col-3');
+    $('.col-12-resize').addClass('col-4');
+  }
+});
+$(window).resize(function () {
+  if ($(window).width() < 1100) {
+    $('.noCol3').removeClass('col-3');
+    $('.col-12-resize').removeClass('col-4');
+  } else if ($(window).width() >= 1100) {
+    $('.noCol3').addClass('col-3');
+    $('.col-12-resize').addClass('col-4');
+  }
+});
 
 function getCurrentTime() {
   return moment().format('h:mm A');

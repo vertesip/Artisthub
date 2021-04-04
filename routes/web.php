@@ -61,7 +61,7 @@ Route::get('/discover' , [App\Http\Controllers\MusicController::class, 'discover
 Route::get('/getRandomLikedMusicId' , [App\Http\Controllers\MusicController::class, 'getRandomLikedMusicId'])->name('getRandomLikedMusicId');
 
 Route::get('/conversation/{userId}' , [App\Http\Controllers\MessageController::class, 'conversation'])->name('message.conversation');
-
+Route::get('/conversation' , [App\Http\Controllers\MessageController::class, 'conversationBlank'])->name('conversation');
 //Search
 Route::get('/search' , [App\Http\Controllers\ProfileController::class, 'search'])->name('search');
 
