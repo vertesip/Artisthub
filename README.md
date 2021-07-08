@@ -20,6 +20,8 @@
     <li>Count followers, followed users, posts and music uploads on profile</li>
 </ul>
 
+<img src="https://media.tenor.com/images/492895007a6a0a2a1972ff51f4abf7f3/tenor.png">
+
 Planned updated: Notification system and better design and reponsivity. After that i will include a live link to the project.
 
 The thesis document: http://diploma.uni-sopron.hu/7832/ (Hungarian)
