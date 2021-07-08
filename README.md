@@ -20,6 +20,6 @@
     <li>Count followers, followed users, posts and music uploads on profile</li>
 </ul>
 
-Planned updated: Notification system and better design and reponsivity. After that i will include a live link to the project.
+Planned updates: Notification system and better design and reponsivity. After that i will include a live link to the project.
 
 The thesis document: http://diploma.uni-sopron.hu/7832/ (Hungarian)
