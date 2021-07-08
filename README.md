@@ -11,13 +11,11 @@
     <li>Edit profile</li>
     <li>Delete posts</li>
     <li>Like and comment on music and posts</li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
+    <li>Play music with music player</li>
+    <li>Chat with other users</li>
+    <li>See whos online</li>
+    <li>Discover new people, new music depending on the music you previously liked</li>
+    <li>Follow and unfollow users</li>
+    <li>See what the people you follow post on the news feed</li>
+    <li>Count followers, followed users, posts and music uploads on profile</li>
 </ul>
