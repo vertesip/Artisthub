@@ -19,3 +19,5 @@
     <li>See what the people you follow post on the news feed</li>
     <li>Count followers, followed users, posts and music uploads on profile</li>
 </ul>
+
+The thesis document: http://diploma.uni-sopron.hu/7832/ (Hungarian)
